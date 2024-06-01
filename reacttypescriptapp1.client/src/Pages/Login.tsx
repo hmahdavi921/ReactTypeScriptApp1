@@ -34,11 +34,14 @@ function Login() {
             // post data to the /register api
 
             var loginurl = "";
-            if (rememberme == true)
+            if (rememberme == true) {
                 loginurl = "/login?useCookies=true";
-            else
+            }
+            else {
                 loginurl = "/login?useSessionCookies=true";
+            }
 
+            //loginurl = loginurl + "&email=" + email + "&password=" + password;
             fetch(loginurl, {
                 method: "POST",
                 headers: {
@@ -48,24 +51,21 @@ function Login() {
                     email: email,
                     password: password,
                 }),
-            })
+            }).then((data) => {
+                // handle success or error from the server
+                console.log(data);
+                if (data.ok) {
+                    setError("Successful Login.");
+                    window.location.href = '/';
+                }
+                else
+                    setError("Error Logging In.");
 
-                .then((data) => {
-                    // handle success or error from the server
-                    console.log(data);
-                    if (data.ok) {
-                        setError("Successful Login.");
-                        window.location.href = '/';
-                    }
-                    else
-                        setError("Error Logging In.");
-
-                })
-                .catch((error) => {
-                    // handle network error
-                    console.error(error);
-                    setError("Error Logging in.");
-                });
+            }).catch((error) => {
+                // handle network error
+                console.error(error);
+                setError("Error Logging in.");
+            });
         }
     };
 
