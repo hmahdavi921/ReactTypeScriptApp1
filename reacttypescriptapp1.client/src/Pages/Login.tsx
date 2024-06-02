@@ -71,7 +71,7 @@ function Login() {
 
     return (
         <div className="containerbox">
-            <h3>Login</h3>
+            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label className="forminput" htmlFor="email">Email:</label>
