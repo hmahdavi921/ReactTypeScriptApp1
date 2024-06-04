@@ -10,7 +10,7 @@ namespace ReactTypeScriptApp1.Server.Controllers
     public class PackageController : ControllerBase
     {
         [HttpGet(Name = "GetPackage")]
-        public IActionResult Package Get()
+        public IActionResult Package()
         {
             return Ok();
         }
