@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using ReactApp1.Server.Data;
 using System.Security.Claims;
 
@@ -17,9 +18,7 @@ namespace ReactTypeScriptApp1.Server
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
             builder.Services.AddAuthorization();
-            builder.Services.AddIdentityApiEndpoints<ApplicationUser>(
-                    /* options => options.SignIn.RequireConfirmedAccount = true */)
-                .AddRoles<IdentityRole>()
+            builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add services to the container.
@@ -30,43 +29,6 @@ namespace ReactTypeScriptApp1.Server
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-
-            //using (var scope = app.Services.CreateScope())
-            //{
-            //    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            //    //var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-
-            //    string role = "Admin";
-            //    if (roleManager.RoleExistsAsync(role).Result == false)
-            //    {
-            //        bool isOk = roleManager.CreateAsync(new IdentityRole(role)).Result.Succeeded;
-            //    }
-            //    string role1 = "Beneficiary";
-            //    if (roleManager.RoleExistsAsync(role1).Result == false)
-            //    {
-            //        bool isOk = roleManager.CreateAsync(new IdentityRole(role1)).Result.Succeeded;
-            //    }
-            //    string role2 = "Developer";
-            //    if (roleManager.RoleExistsAsync(role2).Result == false)
-            //    {
-            //        bool isOk = roleManager.CreateAsync(new IdentityRole(role2)).Result.Succeeded;
-            //    }
-            //    string role3 = "Guard";
-            //    if (roleManager.RoleExistsAsync(role3).Result == false)
-            //    {
-            //        bool isOk = roleManager.CreateAsync(new IdentityRole(role3)).Result.Succeeded;
-            //    }
-            //    string role4 = "Guest";
-            //    if (roleManager.RoleExistsAsync(role4).Result == false)
-            //    {
-            //        bool isOk = roleManager.CreateAsync(new IdentityRole(role4)).Result.Succeeded;
-            //    }
-            //    string role5 = "User";
-            //    if (roleManager.RoleExistsAsync(role5).Result == false)
-            //    {
-            //        bool isOk = roleManager.CreateAsync(new IdentityRole(role5)).Result.Succeeded;
-            //    }
-            //}
 
             app.UseDefaultFiles();
 
@@ -87,7 +49,7 @@ namespace ReactTypeScriptApp1.Server
                 var email = user.FindFirstValue(ClaimTypes.Email); // get the user's email from the claim
                 return Results.Json(new { Email = email }); ; // return the email as a plain text response
             }).RequireAuthorization();
-           
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

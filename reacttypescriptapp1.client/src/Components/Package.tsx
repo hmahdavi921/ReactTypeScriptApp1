@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import Index = require("@types/react/index");
+
 
 
 const UserContext = createContext({});
@@ -66,7 +66,7 @@ function AuthorizeView(props: { children: React.ReactNode }) {
         }
 
         // call the fetch function with retry logic
-        fetchWithRetry("/api/package/index", {
+        fetchWithRetry("/api/package/PackageGet", {
             method: "GET",
         })
             .catch((error) => {
