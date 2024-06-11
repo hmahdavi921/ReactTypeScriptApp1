@@ -63,6 +63,14 @@ export default defineConfig({
             '^/logout': {
                 target,
                 secure: false
+            },
+            '^/addToRole': {
+                target,
+                secure: false
+            },
+            '^/createRole': {
+                target,
+                secure: false
             }
         },
         port: 5173,

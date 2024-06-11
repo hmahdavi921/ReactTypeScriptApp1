@@ -5,7 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ReactTypeScriptApp1.Server.Controllers
 {
-    //[Authorize(Roles = "Developer")]
+    [Authorize(Roles = "Developer")]
     [Route("api/[controller]")]
     [ApiController]
     public class PackageController : ControllerBase

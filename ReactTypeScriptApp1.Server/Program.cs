@@ -19,8 +19,12 @@ namespace ReactTypeScriptApp1.Server
 
             builder.Services.AddAuthorization();
             builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                            .AddRoles<IdentityRole>()
+                            .AddUserManager<UserManager<ApplicationUser>>()
+                            .AddRoleManager<RoleManager<IdentityRole>>()
+                            .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            
             // Add services to the container.
 
             builder.Services.AddControllers();
