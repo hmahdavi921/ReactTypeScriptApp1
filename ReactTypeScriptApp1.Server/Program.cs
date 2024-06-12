@@ -24,7 +24,7 @@ namespace ReactTypeScriptApp1.Server
                             .AddRoleManager<RoleManager<IdentityRole>>()
                             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            
+
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -40,19 +40,11 @@ namespace ReactTypeScriptApp1.Server
 
             app/*.MapGroup("/account")*/.MapIdentityApi<ApplicationUser>();
 
-            app.MapPost("/logout", async (SignInManager<ApplicationUser> signInManager) =>
-            {
-
-                await signInManager.SignOutAsync();
-                return Results.Ok();
-
-            }).RequireAuthorization();
-
             app.MapGet("/pingauth", (ClaimsPrincipal user) =>
-            {
-                var email = user.FindFirstValue(ClaimTypes.Email); // get the user's email from the claim
-                return Results.Json(new { Email = email }); ; // return the email as a plain text response
-            }).RequireAuthorization();
+                        {
+                            var email = user.FindFirstValue(ClaimTypes.Email); // get the user's email from the claim
+                            return Results.Json(new { Email = email }); ; // return the email as a plain text response
+                        }).RequireAuthorization();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
