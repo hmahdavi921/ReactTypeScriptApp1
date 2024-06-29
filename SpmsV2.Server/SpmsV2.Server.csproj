@@ -43,7 +43,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\reacttypescriptapp1.client\reacttypescriptapp1.client.esproj">
+		<ProjectReference Include="..\SpmsV2.client\SpmsV2.client.esproj">
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
 	</ItemGroup>
