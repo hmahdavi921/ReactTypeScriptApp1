@@ -1,11 +1,9 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using ReactApp1.Server.Data;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ReactApp1.Server.Data;
 
-namespace ReactTypeScriptApp1.Server
+namespace SpmsV2.Server
 {
     public class Program
     {
