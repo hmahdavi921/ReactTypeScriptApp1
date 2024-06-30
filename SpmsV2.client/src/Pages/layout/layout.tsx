@@ -18,6 +18,8 @@ import settingsvg from '../../assets/svg/setting.svg';
 import logo from '../../assets/image/logo.png';
 import PumpDataPackage5 from '../../Components/PumpDataPackage5';
 import Package5 from '../../Components/Package5';
+import '../../assets/css/bootstrap.rtl.min.css';
+import '../../assets/css/dashboard.rtl.css';
 
 
 function Layout({ children }) {

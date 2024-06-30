@@ -1,7 +1,7 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LayoutLogin from '../Pages/Layout/LayoutLogin';
- 
+import LayoutLogin from '../Pages/Layout/LayoutLogin.tsx';
+
 
 function Login() {
     // state variables for email and passwords
@@ -73,6 +73,28 @@ function Login() {
 
     return (
         <LayoutLogin>
+            <div className="col-sm-12 col-lg-3 mx-auto">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+                <br />
+                <div className="card">
+                    <div className="card-header">
+                        ورود به سیستم
+                    </div>
+                    <div className="card-body">
+
+
+
+
+                        body
+                    </div>
+                </div>
+            </div>
             <div className="containerbox">
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
