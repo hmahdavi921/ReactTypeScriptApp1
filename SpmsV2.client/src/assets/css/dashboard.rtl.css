@@ -345,6 +345,46 @@ header {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%230c6820'/%3e%3c/svg%3e")
     }
 
+footer {
+    color: white;
+    padding: 15px;
+    display: block;
+    margin-top: 470px;
+    background: linear-gradient(60deg, #4CAF50, rgba(25, 125, 50, 1));
+    border-color: #4caf50;
+}
+
+    footer a {
+        color: white;
+        text-decoration: none;
+    }
+/*
+.form-control:focus {
+    
+    background-color: #d1e7dd;
+    border-color: #d1e7dd;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem #b3e6cf;
+}*/
+
+.card-header.bg-success {
+    background: linear-gradient(60deg, #4CAF50, rgba(25, 125, 50, 1));
+    border-color: #4caf50;
+    color: #fff;
+}
+
+.btn.btn-success {
+    background: linear-gradient(60deg, #4CAF50, rgba(25, 125, 50, 1));
+    border-color: #4caf50;
+    color: #fff;
+}
+
+.form-control:focus {
+    background-color: #fff;
+    border-color: #55b362;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem #298d1d40;
+}
 
 
 
@@ -357,12 +397,15 @@ header {
 
 
 
-
-
-
-
-
-
+/********************************************************
+    *
+    *
+    *
+    min-width : 992px
+    *
+    *
+    *
+*********************************************************/
 
 
 @media(min-width : 992px) {
@@ -370,7 +413,16 @@ header {
         margin-top: -60px;
     }
 }
-/*==================================== max-width: 768px =====================================================*/
+
+/********************************************************
+    *
+    *
+    *
+    max-width: 768px
+    *
+    *
+    *
+*********************************************************/
 @media (max-width: 768px) {
     .sidebar .offcanvas-lg {
         position: -webkit-sticky;

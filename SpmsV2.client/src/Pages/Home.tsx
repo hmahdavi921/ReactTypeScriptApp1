@@ -8,9 +8,9 @@ function Home() {
     return (
         <React.Fragment>
             <AuthorizeView>
-                <span>
-                    <LogoutLink>Logout <AuthorizedUser value="email" /></LogoutLink>
-                </span>
+                {/*<span>*/}
+                {/*    <LogoutLink>Logout <AuthorizedUser value="email" /></LogoutLink>*/}
+                {/*</span>*/}
                 <WeatherForecast/>
             </AuthorizeView>
 

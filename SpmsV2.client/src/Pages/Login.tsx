@@ -1,5 +1,7 @@
 ﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import dangersvg from '../../src/assets/svg/danger.svg';
+import loginsvg from '../../src/assets/svg/login.svg';
 import LayoutLogin from '../Pages/Layout/LayoutLogin.tsx';
 
 
@@ -8,9 +10,11 @@ function Login() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [rememberme, setRememberme] = useState<boolean>(false);
+    const [btnText, setBtnText] = useState<string>("ورود");
     // state variable for error messages
     const [error, setError] = useState<string>("");
     const navigate = useNavigate();
+    
 
     // handle change events for input fields
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +33,7 @@ function Login() {
         e.preventDefault();
         // validate email and passwords
         if (!email || !password) {
-            setError("Please fill in all fields.");
+            setError("نام کاربری و کلمه عبور را وارد کنید.");
         } else {
             // clear error message
             setError("");
@@ -43,6 +47,7 @@ function Login() {
                 loginurl = "/login?useSessionCookies=true";
             }
 
+            setBtnText("ورود ...");
             //loginurl = loginurl + "&email=" + email + "&password=" + password;
             fetch(loginurl, {
                 method: "POST",
@@ -60,13 +65,15 @@ function Login() {
                     setError("Successful Login.");
                     window.location.href = '/';
                 }
-                else
-                    setError("Error Logging In.");
-
+                else {
+                    setError("نام کاربری یا کلمه عبور نادرست است!");
+                }
+                setBtnText("ورود");
             }).catch((error) => {
                 // handle network error
                 console.error(error);
-                setError("Error Logging in.");
+                setError("خطای سیستمی - با پشتیبانی سیستم تماس بگیرید!");
+                setBtnText("ورود");
             });
         }
     };
@@ -74,71 +81,48 @@ function Login() {
     return (
         <LayoutLogin>
             <div className="col-sm-12 col-lg-3 mx-auto">
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-                <br />
-                <div className="card">
-                    <div className="card-header">
+                
+                <div className="card mt-5">
+                    <div className="card-header bg-success">
                         ورود به سیستم
                     </div>
                     <div className="card-body">
+                        <form onSubmit={handleSubmit}>
 
+                            <div className="mb-3">
+                                <label className="forminput" htmlFor="email">نام کاربری :</label>
+                                <input type="email" id="email" name="email" className="form-control" value={email} onChange={handleChange} />
+                            </div>
 
-
-
-                        body
+                            <div className="mb-3">
+                                <label htmlFor="password">کلمه عبور :</label>
+                                <input type="password" id="password" name="password" className="form-control text-lg-end" value={password} onChange={handleChange} />
+                            </div>
+                            <div className="form-check mb-3">
+                                <input className="form-check-input" type="checkbox" id="rememberme" name="rememberme" checked={rememberme} onChange={handleChange} />
+                                <label className="form-check-label" htmlFor="rememberme">
+                                    مرا به خاطر بسپار
+                                </label>
+                            </div>
+                            <div className="mb-3 w-100">
+                                <button type="submit" className="btn btn-success w-100 p-1">
+                                    <img src={loginsvg} width="24" height="24" />
+                                    {btnText}
+                                </button>
+                            </div>
+                        </form>
+                        {
+                            error && <div className="alert alert-danger d-flex align-items-center" role="alert">
+                                <img src={dangersvg} width="20" height="20" />
+                                <div className="m-1">
+                                    {error}
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-            <div className="containerbox">
-                <h2>Login</h2>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label className="forminput" htmlFor="email">Email:</label>
-                    </div>
-                    <div>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={email}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password:</label>
-                    </div>
-                    <div>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            id="rememberme"
-                            name="rememberme"
-                            checked={rememberme}
-                            onChange={handleChange} /><span>Remember Me</span>
-                    </div>
-                    <div>
-                        <button type="submit">Login</button>
-                    </div>
-                    <div>
-                        <button onClick={handleRegisterClick}>Register</button>
-                    </div>
-                </form>
-                {error && <p className="error">{error}</p>}
-            </div>
+
         </LayoutLogin>
 
     );

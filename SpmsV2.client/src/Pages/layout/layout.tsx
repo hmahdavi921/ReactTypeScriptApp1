@@ -16,8 +16,6 @@ import settingsvg from '../../assets/svg/setting.svg';
 //import signallostsvg from '../../assets/svg/signal-lost.svg';
 //import signaloksvg from '../../assets/svg/signal-ok.svg';
 import logo from '../../assets/image/logo.png';
-import PumpDataPackage5 from '../../Components/PumpDataPackage5';
-import Package5 from '../../Components/Package5';
 import '../../assets/css/bootstrap.rtl.min.css';
 import '../../assets/css/dashboard.rtl.css';
 
@@ -37,9 +35,8 @@ function Layout({ children }) {
     };
 
     return (
-        <body>
+        <React.Fragment>
             <div className="navbar flex-md-nowrap p-0" data-bs-theme="light">
-
                 <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-7 text-white" href="/">
                     <img src={logo} />
                     <span className="d-none d-md-inline">سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
@@ -102,7 +99,7 @@ function Layout({ children }) {
                             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
                             style={{ marginLeft: "13px", marginBottom: "4px" }}>
                             <img width="25" height="25" decoding="async"
-                                data-nimg="1" src={burgermenusvg} className="text-white"/>
+                                data-nimg="1" src={burgermenusvg} className="text-white" />
                         </button>
                     </li>
                 </ul>
@@ -182,11 +179,18 @@ function Layout({ children }) {
 
                     <main id="main" className="col-md-9 ms-sm-auto col-lg-11 px-md-4">
 
-                       
+
                     </main>
                 </div>
             </div>
-        </body>
+            <footer>
+                <div className="container-fluid">
+                    <p className="text-center m-0">
+                        کلیه حقوق این سیستم متعلق به <a href="http://ettesalmechanic.com">« شرکت اتصال مکانیک »</a> می باشد
+                    </p>
+                </div>
+            </footer>
+        </React.Fragment>
     )
 }
 

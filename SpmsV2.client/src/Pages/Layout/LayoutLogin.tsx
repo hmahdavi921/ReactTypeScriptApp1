@@ -26,23 +26,30 @@ function LayoutLogin({ children }) {
                     <span className="d-md-inline">سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
                 </a>
             </header>
-            <div id="company-info-wraper" className="d-none d-lg-block">
-                <div className=" text-center">
+            <div id="company-info-wraper" className="d-none d-lg-block" style={{ top: "-55px" }}>
+                <div className="text-center">
                     <p id="company-name">آب منطقه ای چهارمحال و بختیاری</p>
-                    <p id="package-name" style={{ fontWeight: "600" }}>پروژه بن بروجن ایستگاه شماره 1</p>
+                    <p id="package-name " style={{ fontWeight: "600" }}>پروژه بن بروجن ایستگاه شماره 1</p>
                     <p id="package-code">( P18 + p6 ) ( 14020901)</p>
                 </div>
             </div>
             <div id="main-container" className="container-fluid">
                 <div className="row">
-                    <main id="main" className="col text-center">
+                    <main id="main" className="col">
 
                         {children}
 
                     </main>
                 </div>
             </div>
+            <footer>
+                <div className="container-fluid">
+                    <p className="text-center m-0">
+                        کلیه حقوق این سیستم متعلق به <a href="http://ettesalmechanic.com">« شرکت اتصال مکانیک »</a> می باشد
+                    </p>
+                </div>
 
+            </footer>
         </React.Fragment>
     )
 }
