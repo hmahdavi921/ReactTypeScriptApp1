@@ -1,23 +1,26 @@
 ﻿import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import LogoutLink from '../../Components/LogoutLink';
 import aboutsvg from '../../assets/svg/about.svg';
-//import bellsvg from '../../assets/svg/bell.svg';
 import burgermenusvg from '../../assets/svg/burger-menu.svg';
 import calendersvg from '../../assets/svg/calender.svg';
 import chartsvg from '../../assets/svg/chart.svg';
 import exitsvg from '../../assets/svg/exit.svg';
 import homesvg from '../../assets/svg/home.svg';
-//import hourglasssvg from '../../assets/svg/hourglass.svg';
-//import passwordsvg from '../../assets/svg/password.svg';
 import powersvg from '../../assets/svg/power.svg';
-//import refreshsvg from '../../assets/svg/refresh.svg';
 import settingsvg from '../../assets/svg/setting.svg';
+//import hourglasssvg from '../../assets/svg/hourglass.svg';
+//import bellsvg from '../../assets/svg/bell.svg';
+//import passwordsvg from '../../assets/svg/password.svg';
+//import refreshsvg from '../../assets/svg/refresh.svg';
 //import signalerrorsvg from '../../assets/svg/signal-error.svg';
 //import signallostsvg from '../../assets/svg/signal-lost.svg';
 //import signaloksvg from '../../assets/svg/signal-ok.svg';
 import logo from '../../assets/image/logo.png';
-import '../../assets/css/bootstrap.rtl.min.css';
+import 'bootstrap/dist/css/bootstrap.rtl.css';
 import '../../assets/css/dashboard.rtl.css';
+
+
 
 
 function Layout({ children }) {
@@ -36,10 +39,10 @@ function Layout({ children }) {
 
     return (
         <React.Fragment>
-            <div className="navbar flex-md-nowrap p-0" data-bs-theme="light">
+            <header className="navbar flex-md-nowrap p-0" data-bs-theme="light">
                 <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-7 text-white" href="/">
                     <img src={logo} />
-                    <span className="d-none d-md-inline">سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
+                    <span className="d-none d-md-inline">&nbsp; سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
                 </a>
                 <ul className="navbar-nav flex-row">
                     <li className="nav-item dropdown">
@@ -105,7 +108,7 @@ function Layout({ children }) {
                 </ul>
 
 
-            </div>
+            </header>
             <div id="company-info-wraper" className="d-none d-lg-block">
                 <div className=" text-center">
                     <p id="company-name">آب منطقه ای چهارمحال و بختیاری</p>
@@ -119,7 +122,7 @@ function Layout({ children }) {
                         <div className="offcanvas-md offcanvas-end" id="sidebarMenu"
                             aria-labelledby="sidebarMenuLabel">
                             <div className="offcanvas-header">
-                                <span className="offcanvas-title" id="sidebarMenuLabel fs-7">سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
+                                <span className="offcanvas-title" id="sidebarMenuLabel">سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
                                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"></button>
                             </div>
                             <div className="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
@@ -136,40 +139,40 @@ function Layout({ children }) {
                                         </a>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link align-items-center gap-2 text-center" to='/home'>
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to='/'>
                                             <img src={homesvg} height="35" width="35" />
                                             <span className="d-block">مرکز کنترل</span>
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link align-items-center gap-2 text-center" href="#">
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to="#">
                                             <img src={calendersvg} height="28" width="28" />
                                             <span className="d-block">برنامه روزانه</span>
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link align-items-center gap-2 text-center" href="#">
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to="#">
                                             <img src={settingsvg} height="30" width="30" />
                                             <span className="d-block">تنظیمات</span>
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link align-items-center gap-2 text-center" href="#">
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to="#">
                                             <img src={chartsvg} height="30" width="30" />
                                             <span className="d-block">گزارشات</span>
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link align-items-center gap-2 text-center" href="#">
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to="#">
                                             <img src={aboutsvg} height="30" width="30" />
                                             <span className="d-block">درباره نرم افزار</span>
                                         </NavLink>
                                     </li>
                                     <li id="exit-menu" className="nav-item">
-                                        <NavLink className="nav-link align-items-center gap-2 text-center" href="#">
+                                        <LogoutLink className="nav-link align-items-center gap-2 text-center">
                                             <img src={exitsvg} height="30" width="30" />
                                             <span className="d-block">خروج</span>
-                                        </NavLink>
+                                        </LogoutLink>
                                     </li>
                                 </ul>
 
@@ -178,8 +181,7 @@ function Layout({ children }) {
                     </div>
 
                     <main id="main" className="col-md-9 ms-sm-auto col-lg-11 px-md-4">
-
-
+                        {children}
                     </main>
                 </div>
             </div>

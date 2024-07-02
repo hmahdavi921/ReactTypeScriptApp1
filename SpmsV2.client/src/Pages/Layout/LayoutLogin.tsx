@@ -1,8 +1,8 @@
 ﻿import React, { useEffect } from 'react';
 import logo from '../../assets/image/logo.png';
-import '../../assets/css/bootstrap.rtl.min.css';
+import 'bootstrap/dist/css/bootstrap.rtl.css';
 import '../../assets/css/dashboard.rtl.css';
-import '../../assets/js/bootstrap.bundle.min.js';
+
 
 
 
@@ -23,7 +23,7 @@ function LayoutLogin({ children }) {
             <header className="navbar flex-md-nowrap" data-bs-theme="light">
                 <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-7 text-white" href="/">
                     <img src={logo} />
-                    <span className="d-md-inline">سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
+                    <span className="d-md-inline">&nbsp; سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
                 </a>
             </header>
             <div id="company-info-wraper" className="d-none d-lg-block" style={{ top: "-55px" }}>
@@ -36,12 +36,29 @@ function LayoutLogin({ children }) {
             <div id="main-container" className="container-fluid">
                 <div className="row">
                     <main id="main" className="col">
-
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                         {children}
 
                     </main>
                 </div>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <footer>
                 <div className="container-fluid">
                     <p className="text-center m-0">

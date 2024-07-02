@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function LogoutLink(props: { children: React.ReactNode }) {
+function LogoutLink(props: { children: React.ReactNode, className: string }) {
 
     const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ function LogoutLink(props: { children: React.ReactNode }) {
 
     return (
         <React.Fragment>
-            <a href="#" onClick={handleSubmit}>{props.children}</a>
+            <a href="#" className={props.className} onClick={handleSubmit}>{props.children}</a>
         </React.Fragment>
     );
 }

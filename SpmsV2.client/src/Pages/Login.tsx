@@ -62,7 +62,7 @@ function Login() {
                 // handle success or error from the server
                 console.log(data);
                 if (data.ok) {
-                    setError("Successful Login.");
+                    //setError("ورود شما  با موفقیت انجام شد.");
                     window.location.href = '/';
                 }
                 else {
@@ -83,7 +83,7 @@ function Login() {
             <div className="col-sm-12 col-lg-3 mx-auto">
                 
                 <div className="card mt-5">
-                    <div className="card-header bg-success">
+                    <div className="card-header bg-success text-center">
                         ورود به سیستم
                     </div>
                     <div className="card-body">
@@ -112,13 +112,15 @@ function Login() {
                             </div>
                         </form>
                         {
-                            error && <div className="alert alert-danger d-flex align-items-center" role="alert">
+                            error &&
+                            <div className="alert alert-danger d-flex align-items-center" role="alert">
                                 <img src={dangersvg} width="20" height="20" />
                                 <div className="m-1">
                                     {error}
                                 </div>
-                            </div>
+                            </div>  
                         }
+                        
                     </div>
                 </div>
             </div>

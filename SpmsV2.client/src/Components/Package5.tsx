@@ -1,4 +1,22 @@
 ﻿import React, { useEffect } from "react";
+import aboutsvg from '../assets/svg/about.svg';
+import bellsvg from '../assets/svg/bell.svg';
+import burgermenusvg from '../assets/svg/burger-menu.svg';
+import calendersvg from '../assets/svg/calender.svg';
+import chartsvg from '../assets/svg/chart.svg';
+import exitsvg from '../assets/svg/exit.svg';
+import homesvg from '../assets/svg/home.svg';
+import hourglasssvg from '../assets/svg/hourglass.svg';
+import passwordsvg from '../assets/svg/password.svg';
+import powersvg from '../assets/svg/power.svg';
+import refreshsvg from '../assets/svg/refresh.svg';
+import settingsvg from '../assets/svg/setting.svg';
+import signalerrorsvg from '../assets/svg/signal-error.svg';
+import signallostsvg from '../assets/svg/signal-lost.svg';
+import signaloksvg from '../assets/svg/signal-ok.svg';
+import package5img from '../assets/image/Package5.png';
+
+
 
 
 const package5 = () => {
@@ -17,10 +35,10 @@ const package5 = () => {
                 <div className="card mt-1 mt-lg-3">
                     <div className="card-header bg-success-subtle text-start">
                         <span id="station-status">وضعیت کلی دستگاه : </span>
-                        <img id="connection-status-signal-ok" src="../assets/icon/signal-ok.svg" height="24" width="24" className="float-end" />
-                        <img id="connection-status-signal-lost" src="../assets/icon/signal-lost.svg" height="24" width="24" className="float-end" />
-                        <img id="connection-status-signal-error" src="../assets/icon/signal-error.svg" height="24" width="24" className="float-end" />
-                        <img id="connection-status-hourglass" src="../assets/icon/hourglass.svg" height="24" width="24" className="float-end" />
+                        <img id="connection-status-signal-ok" src={signaloksvg} height="24" width="24" className="float-end" />
+                        <img id="connection-status-signal-lost" src={signallostsvg} height="24" width="24" className="float-end" />
+                        <img id="connection-status-signal-error" src={signalerrorsvg} height="24" width="24" className="float-end" />
+                        <img id="connection-status-hourglass" src={hourglasssvg} height="24" width="24" className="float-end" />
                     </div>
                     <div className="card-body row">
                         <div className="col-sm-12 col-lg-2">
@@ -129,7 +147,7 @@ const package5 = () => {
                             </div>
                         </div>
                         <div className="col-sm-12 col-lg-10 text-center">
-                            <img src="../assets/Package5.png" className="img-fluid" />
+                            <img src={package5img} className="img-fluid" />
                             <br />
                             <label id="suction-pressure" className="fs-6">1.1 Bar</label>
                             <label id="thrust-pressure" className="fs-6">16 Bar</label>
@@ -143,7 +161,7 @@ const package5 = () => {
 
             <div id="pump-data-wrapper">
                 <div className="row">
-                    <div className="col ">
+                    <div className="col">
                         <div className="card mb-3 border-success">
                             <div className="card-header text-center">
                                 پمپ شماره <span className="badge bg-success">5</span>
@@ -154,10 +172,10 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked1" checked />
-                                                    <label className="form-check-label" htmlFor="flexSwitchCheckChecked1"></label>
-                                                </div>
+                                                <label className="switch">
+                                                    <input type="checkbox" />
+                                                    <span className="slider round"></span>
+                                                </label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -200,10 +218,10 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked2" checked />
-                                                    <label className="form-check-label" htmlFor="flexSwitchCheckChecked2"></label>
-                                                </div>
+                                                <label className="switch">
+                                                    <input type="checkbox" />
+                                                    <span className="slider round"></span>
+                                                </label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -246,10 +264,10 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked3" checked />
-                                                    <label className="form-check-label" htmlFor="flexSwitchCheckChecked3"></label>
-                                                </div>
+                                                <label className="switch">
+                                                    <input type="checkbox" />
+                                                    <span className="slider round"></span>
+                                                </label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -292,10 +310,10 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked4" checked />
-                                                    <label className="form-check-label" htmlFor="flexSwitchCheckChecked4"></label>
-                                                </div>
+                                                <label className="switch">
+                                                    <input type="checkbox" />
+                                                    <span className="slider round"></span>
+                                                </label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -338,10 +356,10 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked5" checked />
-                                                    <label className="form-check-label" htmlFor="flexSwitchCheckChecked5"></label>
-                                                </div>
+                                                <label className="switch">
+                                                    <input type="checkbox" />
+                                                    <span className="slider round"></span>
+                                                </label>
                                             </td>
                                         </tr>
                                         <tr>
