@@ -357,7 +357,7 @@ const package5 = () => {
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
                                                 <label className="switch">
-                                                    <input type="checkbox" />
+                                                    <input type="checkbox" checked />
                                                     <span className="slider round"></span>
                                                 </label>
                                             </td>

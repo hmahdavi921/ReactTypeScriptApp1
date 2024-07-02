@@ -417,7 +417,6 @@ footer {
 input:checked + .slider {
     outline: 0;
     background-color: #198754;
-    
 }
 
 input:focus + .slider {
