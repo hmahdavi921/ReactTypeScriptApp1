@@ -9,16 +9,11 @@ import exitsvg from '../../assets/svg/exit.svg';
 import homesvg from '../../assets/svg/home.svg';
 import powersvg from '../../assets/svg/power.svg';
 import settingsvg from '../../assets/svg/setting.svg';
-//import hourglasssvg from '../../assets/svg/hourglass.svg';
-//import bellsvg from '../../assets/svg/bell.svg';
-//import passwordsvg from '../../assets/svg/password.svg';
-//import refreshsvg from '../../assets/svg/refresh.svg';
-//import signalerrorsvg from '../../assets/svg/signal-error.svg';
-//import signallostsvg from '../../assets/svg/signal-lost.svg';
-//import signaloksvg from '../../assets/svg/signal-ok.svg';
+import bellsvg from '../../assets/svg/bell.svg';
 import logo from '../../assets/image/logo.png';
 import 'bootstrap/dist/css/bootstrap.rtl.css';
 import '../../assets/css/dashboard.rtl.css';
+import '../../assets/js/bootstrap.bundle.min.js';
 
 
 
@@ -29,8 +24,8 @@ function Layout({ children }) {
     //const { id } = useParams();
 
     useEffect(() => {
-        console.info('layout -> useEffect');
-        //console.info(children);
+        //console.info('layout -> useEffect');
+
     }, [])
 
     const handleOnFocus = () => {
@@ -55,12 +50,7 @@ function Layout({ children }) {
                     <li className="nav-item dropdown">
                         <a className="nav-link  text-white me-lg-5" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             <div className="position-relative">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    className="feather feather-bell align-middle">
-                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                                </svg>
+                                <img src={bellsvg} width="21" height="21" />
                                 <span className="indicator">4</span>
                             </div>
                         </a>
@@ -75,11 +65,7 @@ function Layout({ children }) {
                             <li>
                                 <a className="dropdown-item" href="#">
                                     <div className="alert alert-primary d-flex align-items-center" role="alert">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none"
-                                            className="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
-                                            aria-label="Warning:">
-                                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                                        </svg>
+                                        <img src={bellsvg} width="21" height="21" />
                                         <div>
                                             An example alert with an icon
                                         </div>
@@ -188,7 +174,7 @@ function Layout({ children }) {
             <footer>
                 <div className="container-fluid">
                     <p className="text-center m-0">
-                        کلیه حقوق این سیستم متعلق به <a href="http://ettesalmechanic.com">« شرکت اتصال مکانیک »</a> می باشد
+                        کلیه حقوق این سیستم متعلق به <a href="https://emtco.ir/">« شرکت اتصال مکانیک »</a> می باشد
                     </p>
                 </div>
             </footer>

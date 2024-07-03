@@ -1,20 +1,10 @@
-﻿import React, { useEffect } from "react";
-import aboutsvg from '../assets/svg/about.svg';
-import bellsvg from '../assets/svg/bell.svg';
-import burgermenusvg from '../assets/svg/burger-menu.svg';
-import calendersvg from '../assets/svg/calender.svg';
-import chartsvg from '../assets/svg/chart.svg';
-import exitsvg from '../assets/svg/exit.svg';
-import homesvg from '../assets/svg/home.svg';
+﻿import React, { ChangeEvent, useEffect } from "react";
 import hourglasssvg from '../assets/svg/hourglass.svg';
-import passwordsvg from '../assets/svg/password.svg';
-import powersvg from '../assets/svg/power.svg';
-import refreshsvg from '../assets/svg/refresh.svg';
-import settingsvg from '../assets/svg/setting.svg';
 import signalerrorsvg from '../assets/svg/signal-error.svg';
 import signallostsvg from '../assets/svg/signal-lost.svg';
 import signaloksvg from '../assets/svg/signal-ok.svg';
 import package5img from '../assets/image/Package5.png';
+import ToggleSwitch from "./ToggleSwitch";
 
 
 
@@ -24,10 +14,10 @@ const package5 = () => {
     useEffect(() => {
         console.log('package5 - useEffect');
     });
+    function handleOnFocus(e: ChangeEvent<HTMLInputElement>) {
+        e.target.blur();
+    }
 
-    const handleOnFocus = () => {
-        blur();
-    };
 
     return (
         <React.Fragment>
@@ -50,10 +40,10 @@ const package5 = () => {
                                                 <label className="label-title">برنامه کاری</label>
                                             </td>
                                             <td>
-                                                <select className="form-select form-select-sm fs-7" id="work-plan">
+                                                <select className="form-select form-select-sm fs-7" id="work-plan" defaultValue="3">
                                                     <option value="1">برنامه روزانه</option>
                                                     <option value="2">فشار اتوماتیک</option>
-                                                    <option selected value="3">کنترل دستی</option>
+                                                    <option value="3">کنترل دستی</option>
                                                 </select>
                                             </td>
                                             <td>
@@ -102,10 +92,7 @@ const package5 = () => {
                                             <td><label className="label-title">فشار رانش</label></td>
                                             <td>
                                                 <div className="input-group input-group-sm w-100">
-                                                    <div className="input-group-text" data-operation="-">-</div>
                                                     <input id="output-pressure" type="number" className="form-control" disabled />
-                                                    <div className="input-group-text" data-operation="+">+</div>
-                                                    <label></label>
                                                 </div>
                                             </td>
                                             <td>
@@ -161,7 +148,7 @@ const package5 = () => {
 
             <div id="pump-data-wrapper">
                 <div className="row">
-                    <div className="col">
+                    <div className="col-sm-12 col-lg-2">
                         <div className="card mb-3 border-success">
                             <div className="card-header text-center">
                                 پمپ شماره <span className="badge bg-success">5</span>
@@ -172,10 +159,7 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <label className="switch">
-                                                    <input type="checkbox" />
-                                                    <span className="slider round"></span>
-                                                </label>
+                                                <ToggleSwitch id={"pumpactive5"} active={false} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -207,7 +191,7 @@ const package5 = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col">
+                    <div className="col-sm-12 col-lg-2">
                         <div className="card mb-3 border-success">
                             <div className="card-header text-center">
                                 پمپ شماره <span className="badge bg-success">4</span>
@@ -218,10 +202,7 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <label className="switch">
-                                                    <input type="checkbox" />
-                                                    <span className="slider round"></span>
-                                                </label>
+                                                <ToggleSwitch id={"pumpactive4"} active={false} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -253,7 +234,7 @@ const package5 = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col">
+                    <div className="col-sm-12 col-lg-2">
                         <div className="card mb-3 border-success">
                             <div className="card-header text-center">
                                 پمپ شماره <span className="badge bg-success">3</span>
@@ -264,10 +245,7 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <label className="switch">
-                                                    <input type="checkbox" />
-                                                    <span className="slider round"></span>
-                                                </label>
+                                                <ToggleSwitch id={"pumpactive3"} active={false} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -299,7 +277,7 @@ const package5 = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col">
+                    <div className="col-sm-12 col-lg-2">
                         <div className="card mb-3 border-success">
                             <div className="card-header text-center">
                                 پمپ شماره <span className="badge bg-success">2</span>
@@ -310,10 +288,7 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <label className="switch">
-                                                    <input type="checkbox" />
-                                                    <span className="slider round"></span>
-                                                </label>
+                                                <ToggleSwitch id={"pumpactive2"} active={true} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -345,7 +320,7 @@ const package5 = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col">
+                    <div className="col-sm-12 col-lg-2">
                         <div className="card mb-3 border-success">
                             <div className="card-header text-center">
                                 پمپ شماره <span className="badge bg-success">1</span>
@@ -356,10 +331,7 @@ const package5 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <label className="switch">
-                                                    <input type="checkbox" checked />
-                                                    <span className="slider round"></span>
-                                                </label>
+                                                <ToggleSwitch id={"pumpactive1"} active={false} />
                                             </td>
                                         </tr>
                                         <tr>
