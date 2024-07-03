@@ -133,13 +133,14 @@ const package5 = () => {
                                 </table>
                             </div>
                         </div>
-                        <div className="col-sm-12 col-lg-10 text-center">
+                        <div className="col-sm-12 col-lg-8 text-center">
                             <img src={package5img} className="img-fluid" />
                             <br />
                             <label id="suction-pressure" className="fs-6">1.1 Bar</label>
                             <label id="thrust-pressure" className="fs-6">16 Bar</label>
                             <label id="work-pump1">کارکرد پمپ 1 : 12121.2 ساعت</label>
                         </div>
+                        
                     </div>
                 </div>
             </div>

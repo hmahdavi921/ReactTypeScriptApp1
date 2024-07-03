@@ -91,12 +91,12 @@ function Login() {
 
                             <div className="mb-3">
                                 <label className="forminput" htmlFor="email">نام کاربری :</label>
-                                <input type="email" id="email" name="email" className="form-control" value={email} onChange={handleChange} />
+                                <input type="email" id="email" name="email" className="form-control text-end" value={email} onChange={handleChange} />
                             </div>
 
                             <div className="mb-3">
                                 <label htmlFor="password">کلمه عبور :</label>
-                                <input type="password" id="password" name="password" className="form-control text-lg-end" value={password} onChange={handleChange} />
+                                <input type="password" id="password" name="password" className="form-control text-lg-end text-end" value={password} onChange={handleChange} />
                             </div>
                             <div className="form-check mb-3">
                                 <input className="form-check-input" type="checkbox" id="rememberme" name="rememberme" checked={rememberme} onChange={handleChange} />

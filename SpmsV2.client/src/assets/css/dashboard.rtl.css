@@ -336,16 +336,26 @@ header {
     font-size: 11px;
      
 }
+
 #pump-data-wrapper .col-lg-2 div.card-body label.form-check-label {
     right: 149px;
 }
+#pump-data-wrapper .col-lg-2 div.card-body .form-check-input:checked + label.form-check-label {
+    right: 133px;
+}
+
 #pump-data-wrapper .col-lg-3 div.card-body label.form-check-label {
     right: 214px;
+}
+#pump-data-wrapper .col-lg-3 div.card-body .form-check-input:checked + label.form-check-label {
+    right: 200px;
 }
 #pump-data-wrapper .col-lg-4 div.card-body label.form-check-label {
      
 }
-
+#pump-data-wrapper .col-lg-4 div.card-body .form-check-input:checked + label.form-check-label {
+     
+}
 
 
 
@@ -520,10 +530,6 @@ input:checked + .slider:before {
         top: 48px;
     }
 
-    /*.navbar-search {
-        display: block;
-    }*/
-
     #power-menu > a {
         border-top-left-radius: 0px;
     }
@@ -535,5 +541,8 @@ input:checked + .slider:before {
     #pump-data-wrapper .form-check-label {
         top: 64px;
         right: 238px !important;
+    }
+    #pump-data-wrapper div.card-body .form-check-input:checked + label.form-check-label {
+        right: 223px !important;
     }
 }
