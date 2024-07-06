@@ -5,6 +5,11 @@ import signallostsvg from '../assets/svg/signal-lost.svg';
 import signaloksvg from '../assets/svg/signal-ok.svg';
 import package2img from '../assets/image/package2.png';
 import ToggleSwitch from "./ToggleSwitch";
+import '../assets/css/package2.css';
+
+import makeshImage from '../assets/image/package2/makesh.png';
+import makeshErrorImage from '../assets/image/package2/makesh-error.png';
+import raneshImage from '../assets/image/package2/ranesh.png';
 
 
 
@@ -135,9 +140,9 @@ const package5 = memo(() => {
                         </div>
                         <div className="col-sm-12 col-lg-8 text-center">
                             <img src={package2img} className="img-fluid" draggable="false" id="image-package" />
-                            <img src="/Images/makesh.png" id="image-makesh" style={{display: "none"}} />
-                            <img src="/Images/makesh-error.png" id="image-makesh-error" style={{display: "none"}} />
-                            <img src="/Images/ranesh.png" id="image-ranesh" style={{ display: "none" }} />
+                            <img src={makeshImage} id="image-makesh" style={{ display: "none" }} />
+                            <img src={makeshErrorImage} id="image-makesh-error" style={{ display: "none" }} />
+                            <img src={raneshImage} id="image-ranesh" style={{ display: "none" }} />
 
                             <img src="/Images/makesh-arrow.png" id="image-makesh-arrow1" />
                             <img src="/Images/makesh-arrow.png" id="image-makesh-arrow2" />
@@ -145,22 +150,22 @@ const package5 = memo(() => {
 
                             <img src="/Images/water-pump.png" id="image-water-pump1" />
                             <img src="/Images/water-pump.png" id="image-water-pump2" />
-                           
-                            <img src="/Images/pump-active.png" id="image-pump1-active" style={{display: "none"}} />
-                            <img src="/Images/pump-active.png" id="image-pump2-active" style={{display: "none"}} />
-                            
+
+                            <img src="/Images/pump-active.png" id="image-pump1-active" style={{ display: "none" }} />
+                            <img src="/Images/pump-active.png" id="image-pump2-active" style={{ display: "none" }} />
+
                             <img src="/Images/ranesh-arrow.png" id="image-ranesh-arrow1" />
                             <img src="/Images/ranesh-arrow.png" id="image-ranesh-arrow2" />
 
-                            <img src="/Images/pipe-error.png" id="image-pipe-error1" style={{display: "none"}} />
-                            <img src="/Images/pipe-error.png" id="image-pipe-error2" style={{display: "none"}} />
-                            
-                            <img src="/Images/pipe.png" id="image-pipe1" style={{display: "none"}} />
-                            <img src="/Images/pipe.png" id="image-pipe2" style={{display: "none"}} />
-                            
+                            <img src="/Images/pipe-error.png" id="image-pipe-error1" style={{ display: "none" }} />
+                            <img src="/Images/pipe-error.png" id="image-pipe-error2" style={{ display: "none" }} />
+
+                            <img src="/Images/pipe.png" id="image-pipe1" style={{ display: "none" }} />
+                            <img src="/Images/pipe.png" id="image-pipe2" style={{ display: "none" }} />
+
                             <label id="pump1-run-time"> کارکرد پمپ 1 : </label>
                             <label id="pump2-run-time"> کارکرد پمپ 2 : </label>
-                            
+
                             <label id="label-input-presure"> 0.0 Bar </label>
                             <label id="label-output-presure"> 0.0 Bar </label>
                         </div>

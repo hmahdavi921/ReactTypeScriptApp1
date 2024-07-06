@@ -1,2 +1,15 @@
-body {
+#image-makesh, #image-makesh-error {
+    position: absolute;
+    width: 183px;
+    top: 140px;
+    right: 1183px;
+    opacity: 0.7;
+}
+
+#image-ranesh {
+    position: absolute;
+    right: 331px;
+    top: 193px;
+    opacity: 0.7;
+    width: 110px;
 }
