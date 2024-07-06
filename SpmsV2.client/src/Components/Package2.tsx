@@ -3,13 +3,15 @@ import hourglasssvg from '../assets/svg/hourglass.svg';
 import signalerrorsvg from '../assets/svg/signal-error.svg';
 import signallostsvg from '../assets/svg/signal-lost.svg';
 import signaloksvg from '../assets/svg/signal-ok.svg';
-import package2img from '../assets/image/package2.png';
+import package2Image from '../assets/image/package2.png';
 import ToggleSwitch from "./ToggleSwitch";
 import '../assets/css/package2.css';
 
 import makeshImage from '../assets/image/package2/makesh.png';
 import makeshErrorImage from '../assets/image/package2/makesh-error.png';
 import raneshImage from '../assets/image/package2/ranesh.png';
+import imageMakeshArrow from '../assets/image/package2/makesh-arrow.png';
+import imageRaneshArrow from '../assets/image/package2/ranesh-arrow.png';
 
 
 
@@ -139,23 +141,22 @@ const package5 = memo(() => {
                             </div>
                         </div>
                         <div className="col-sm-12 col-lg-8 text-center">
-                            <img src={package2img} className="img-fluid" draggable="false" id="image-package" />
+                            <img src={package2Image} className="img-fluid" draggable="false" id="image-package" />
                             <img src={makeshImage} id="image-makesh" style={{ display: "none" }} />
                             <img src={makeshErrorImage} id="image-makesh-error" style={{ display: "none" }} />
                             <img src={raneshImage} id="image-ranesh" style={{ display: "none" }} />
 
-                            <img src="/Images/makesh-arrow.png" id="image-makesh-arrow1" />
-                            <img src="/Images/makesh-arrow.png" id="image-makesh-arrow2" />
-                            <img src="/Images/makesh-arrow.png" id="image-makesh-arrow3" />
+                            <img src={imageMakeshArrow} id="image-makesh-arrow1" />
+                            <img src={imageMakeshArrow} id="image-makesh-arrow2" />
+                           
+                            <img src={imageRaneshArrow} id="image-ranesh-arrow1" />
+                            <img src={imageRaneshArrow} id="image-ranesh-arrow2" />
 
                             <img src="/Images/water-pump.png" id="image-water-pump1" />
                             <img src="/Images/water-pump.png" id="image-water-pump2" />
 
                             <img src="/Images/pump-active.png" id="image-pump1-active" style={{ display: "none" }} />
                             <img src="/Images/pump-active.png" id="image-pump2-active" style={{ display: "none" }} />
-
-                            <img src="/Images/ranesh-arrow.png" id="image-ranesh-arrow1" />
-                            <img src="/Images/ranesh-arrow.png" id="image-ranesh-arrow2" />
 
                             <img src="/Images/pipe-error.png" id="image-pipe-error1" style={{ display: "none" }} />
                             <img src="/Images/pipe-error.png" id="image-pipe-error2" style={{ display: "none" }} />

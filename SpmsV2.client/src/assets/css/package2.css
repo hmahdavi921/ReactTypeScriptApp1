@@ -13,3 +13,31 @@
     opacity: 0.7;
     width: 110px;
 }
+
+#image-makesh-arrow1 {
+    position: absolute;
+    top: 195px;
+    right: 1218px;
+    width: 68px;
+}
+
+#image-makesh-arrow2 {
+    position: absolute;
+    top: 311px;
+    right: 1240px;
+    width: 68px;
+}
+
+#image-ranesh-arrow1 {
+    position: absolute;
+    top: 236px;
+    right: 372px;
+    width: 65px;
+}
+
+#image-ranesh-arrow2 {
+    position: absolute;
+    top: 324px;
+    right: 359px;
+    width: 65px;
+}
