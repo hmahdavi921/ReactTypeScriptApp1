@@ -18,7 +18,7 @@ import '../../assets/js/bootstrap.bundle.min.js';
 
 
 
-function Layout({ children }) {
+function Layout({ children }: { children: React.ReactNode }) {
 
     //const [user, setUser] = useState({});
     //const { id } = useParams();
@@ -28,9 +28,7 @@ function Layout({ children }) {
 
     }, [])
 
-    const handleOnFocus = () => {
-        blur();
-    };
+
 
     return (
         <React.Fragment>

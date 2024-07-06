@@ -5,7 +5,7 @@ const ToggleSwitch = ({ id, active }: { id: string, active: boolean }) => {
 
     const [switchState, setSwitchState] = useState(active);
     function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
-        console.log("ToggleSwitch-" + id + " : ", e.target.checked);
+        //console.log("ToggleSwitch-" + id + " : ", e.target.checked);
         setSwitchState(!switchState);
     }
 

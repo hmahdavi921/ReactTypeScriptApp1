@@ -3,7 +3,7 @@ import hourglasssvg from '../assets/svg/hourglass.svg';
 import signalerrorsvg from '../assets/svg/signal-error.svg';
 import signallostsvg from '../assets/svg/signal-lost.svg';
 import signaloksvg from '../assets/svg/signal-ok.svg';
-import package5img from '../assets/image/package5.png';
+import package2img from '../assets/image/package2.png';
 import ToggleSwitch from "./ToggleSwitch";
 
 
@@ -134,7 +134,7 @@ const package5 = memo(() => {
                             </div>
                         </div>
                         <div className="col-sm-12 col-lg-8 text-center">
-                            <img src={package5img} className="img-fluid" draggable="false" />
+                            <img src={package2img} className="img-fluid" draggable="false" />
                             <br />
                             <label id="suction-pressure" className="fs-6">1.1 Bar</label>
                             <label id="thrust-pressure" className="fs-6">16 Bar</label>
@@ -149,7 +149,7 @@ const package5 = memo(() => {
 
             <div id="pump-data-wrapper">
                 <div className="row flex-row-reverse justify-content-center">
-                    <div className="col-sm-12 col-lg-2">
+                    <div className="col-sm-12 col-lg-3">
                         <div className="card mb-3 border-success">
                             <div className="card-header text-center">
                                 پمپ شماره <span className="badge bg-success">1</span>
@@ -192,7 +192,7 @@ const package5 = memo(() => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-12 col-lg-2">
+                    <div className="col-sm-12 col-lg-3">
                         <div className="card mb-3 border-success">
                             <div className="card-header text-center">
                                 پمپ شماره <span className="badge bg-success">2</span>
@@ -204,135 +204,6 @@ const package5 = memo(() => {
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
                                                 <ToggleSwitch id={"pumpactive2"} active={false} />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">فرکانس </label></td>
-                                            <td><label id="frequency-pump2" className="label-value">0</label> HZ </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">توان </label></td>
-                                            <td><label id="power-consumed-pump2" className="label-value">0</label> KW </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">دبی </label></td>
-                                            <td><label id="db-pump2" className="label-value">0</label> L/S </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">جریان </label></td>
-                                            <td><label id="current-pump2" className="label-value">0</label> A </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">زمان کل کارکرد </label></td>
-                                            <td><label id="TotalWorkingTime-pump2" className="label-value">0.3</label> H </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">خطای درایو </label></td>
-                                            <td><label id="Fault-pump2" className="label-value bg-danger-subtle AnimationOpacity">6</label></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-12 col-lg-2">
-                        <div className="card mb-3 border-success">
-                            <div className="card-header text-center">
-                                پمپ شماره <span className="badge bg-success">3</span>
-                            </div>
-                            <div className="card-body">
-                                <table className="table table-sm table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <td><label className="label-title">وضعیت </label></td>
-                                            <td>
-                                                <ToggleSwitch id={"pumpactive3"} active={false} />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">فرکانس </label></td>
-                                            <td><label id="frequency-pump2" className="label-value">0</label> HZ </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">توان </label></td>
-                                            <td><label id="power-consumed-pump2" className="label-value">0</label> KW </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">دبی </label></td>
-                                            <td><label id="db-pump2" className="label-value">0</label> L/S </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">جریان </label></td>
-                                            <td><label id="current-pump2" className="label-value">0</label> A </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">زمان کل کارکرد </label></td>
-                                            <td><label id="TotalWorkingTime-pump2" className="label-value">0.3</label> H </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">خطای درایو </label></td>
-                                            <td><label id="Fault-pump2" className="label-value bg-danger-subtle AnimationOpacity">6</label></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-12 col-lg-2">
-                        <div className="card mb-3 border-success">
-                            <div className="card-header text-center">
-                                پمپ شماره <span className="badge bg-success">4</span>
-                            </div>
-                            <div className="card-body">
-                                <table className="table table-sm table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <td><label className="label-title">وضعیت </label></td>
-                                            <td>
-                                                <ToggleSwitch id={"pumpactive4"} active={true} />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">فرکانس </label></td>
-                                            <td><label id="frequency-pump2" className="label-value">0</label> HZ </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">توان </label></td>
-                                            <td><label id="power-consumed-pump2" className="label-value">0</label> KW </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">دبی </label></td>
-                                            <td><label id="db-pump2" className="label-value">0</label> L/S </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">جریان </label></td>
-                                            <td><label id="current-pump2" className="label-value">0</label> A </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">زمان کل کارکرد </label></td>
-                                            <td><label id="TotalWorkingTime-pump2" className="label-value">0.3</label> H </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">خطای درایو </label></td>
-                                            <td><label id="Fault-pump2" className="label-value bg-danger-subtle AnimationOpacity">6</label></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-12 col-lg-2">
-                        <div className="card mb-3 border-success">
-                            <div className="card-header text-center">
-                                پمپ شماره <span className="badge bg-success">5</span>
-                            </div>
-                            <div className="card-body">
-                                <table className="table table-sm table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <td><label className="label-title">وضعیت </label></td>
-                                            <td>
-                                                <ToggleSwitch id={"pumpactive5"} active={false} />
                                             </td>
                                         </tr>
                                         <tr>

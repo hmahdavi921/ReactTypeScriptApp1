@@ -37,7 +37,7 @@ function AuthorizeView(props: { children: React.ReactNode }) {
 
                 // check the status code
                 if (response.status == 200) {
-                    console.log("Authorized");
+                    //console.log("Authorized");
                     let j: any = await response.json();
                     setUser({ email: j.email });
                     setAuthorized(true);
