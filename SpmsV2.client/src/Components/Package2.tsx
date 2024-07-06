@@ -12,6 +12,7 @@ import makeshErrorImage from '../assets/image/package2/makesh-error.png';
 import raneshImage from '../assets/image/package2/ranesh.png';
 import imageMakeshArrow from '../assets/image/package2/makesh-arrow.png';
 import imageRaneshArrow from '../assets/image/package2/ranesh-arrow.png';
+import imageWaterPump from '../assets/image/water-pump.png';
 
 
 
@@ -148,12 +149,12 @@ const package5 = memo(() => {
 
                             <img src={imageMakeshArrow} id="image-makesh-arrow1" />
                             <img src={imageMakeshArrow} id="image-makesh-arrow2" />
-                           
+
                             <img src={imageRaneshArrow} id="image-ranesh-arrow1" />
                             <img src={imageRaneshArrow} id="image-ranesh-arrow2" />
 
-                            <img src="/Images/water-pump.png" id="image-water-pump1" />
-                            <img src="/Images/water-pump.png" id="image-water-pump2" />
+                            <img src={imageWaterPump} id="image-water-pump1" />
+                            <img src={imageWaterPump} id="image-water-pump2" />
 
                             <img src="/Images/pump-active.png" id="image-pump1-active" style={{ display: "none" }} />
                             <img src="/Images/pump-active.png" id="image-pump2-active" style={{ display: "none" }} />

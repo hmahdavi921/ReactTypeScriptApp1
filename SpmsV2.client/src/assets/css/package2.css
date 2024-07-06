@@ -41,3 +41,17 @@
     right: 359px;
     width: 65px;
 }
+#image-water-pump1 {
+    position: absolute;
+    top: 276px;
+    right: 587px;
+    width: 173px;
+    height: 43px;
+}
+#image-water-pump2 {
+    position: absolute;
+    top: 393px;
+    right: 582px;
+    width: 173px;
+    height: 43px;
+}
