@@ -41,6 +41,7 @@
     right: 359px;
     width: 65px;
 }
+
 #image-water-pump1 {
     position: absolute;
     top: 276px;
@@ -48,10 +49,179 @@
     width: 173px;
     height: 43px;
 }
+
 #image-water-pump2 {
     position: absolute;
     top: 393px;
     right: 582px;
     width: 173px;
     height: 43px;
+}
+
+#image-pump-active1, #image-pump-error1, #image-pump-ready1 {
+    position: absolute;
+    top: 265px;
+    right: 558px;
+    width: 574px;
+    opacity: 0.7;
+    height: 63px;
+}
+
+#image-pump-active2, #image-pump-error2, #image-pump-ready2 {
+    position: absolute;
+    top: 383px;
+    right: 548px;
+    width: 600px;
+    height: 65px;
+    opacity: 0.7;
+}
+
+#run-time-pump1 {
+    position: absolute;
+    top: 286px;
+    right: 796px;
+    color: #fff;
+}
+
+#run-time-pump2 {
+    position: absolute;
+    top: 405px;
+    right: 796px;
+    color: #fff;
+}
+
+#label-input-pressure {
+    position: absolute;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 4px;
+    border: 1px solid rgb(47, 155, 156);
+    color: rgb(47, 155, 156);
+    top: 129px;
+    right: 1045px;
+    font-size: 18px;
+    direction: ltr;
+    width: 111px;
+}
+
+#label-output-pressure {
+    position: absolute;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 4px;
+    border: 1px solid rgb(47, 155, 156);
+    color: rgb(47, 155, 156);
+    top: 474px;
+    right: 435px;
+    font-size: 18px;
+    direction: ltr;
+    width: 111px;
+}
+/**********************************************************************************************************
+    *
+    *
+    @media (max-width: 768px)
+    *
+    *
+***********************************************************************************************************/
+
+@media (max-width: 768px) {
+    #image-makesh, #image-makesh-error {
+        width: 73px;
+        top: 434px;
+        right: 357px;
+    }
+
+    #image-ranesh {
+        right: 29px;
+        top: 457px;
+        width: 43px;
+    }
+
+    #image-makesh-arrow1 {
+        top: 457px;
+        right: 372px;
+        width: 27px;
+    }
+
+    #image-makesh-arrow2 {
+        top: 502px;
+        right: 379px;
+        width: 27px;
+    }
+
+    #image-ranesh-arrow1 {
+        top: 466px;
+        right: 43px;
+        width: 30px;
+    }
+
+    #image-ranesh-arrow2 {
+        top: 501px;
+        right: 38px;
+        width: 30px;
+    }
+
+    #image-water-pump1 {
+        top: 488px;
+        right: 127px;
+        width: 68px;
+        height: 20px;
+    }
+
+    #image-water-pump2 {
+        top: 533px;
+        right: 122px;
+        width: 71px;
+        height: 20px;
+    }
+
+    #image-pump-active1, #image-pump-error1, #image-pump-ready1 {
+        top: 486px;
+        right: 117px;
+        width: 220px;
+        height: 23px;
+    }
+
+    #image-pump-active2, #image-pump-error2, #image-pump-ready2 {
+        top: 532px;
+        right: 114px;
+        width: 230px;
+        height: 23px;
+    }
+
+    #run-time-pump1 {
+        top: 490px;
+        right: 211px;
+        font-size: 10px;
+    }
+
+    #run-time-pump2 {
+        top: 536px;
+        right: 211px;
+        font-size: 10px;
+    }
+
+    #label-input-pressure {
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 2px;
+        top: 428px;
+        right: 264px;
+        font-size: 15px;
+        width: 83px;
+    }
+
+    #label-output-pressure {
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 2px;
+        top: 562px;
+        right: 69px;
+        font-size: 15px;
+        width: 83px;
+    }
+    #station-status-parent {
+         height: 77px;
+    }
 }

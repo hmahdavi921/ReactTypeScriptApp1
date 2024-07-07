@@ -7,12 +7,15 @@ import package2Image from '../assets/image/package2.png';
 import ToggleSwitch from "./ToggleSwitch";
 import '../assets/css/package2.css';
 
-import makeshImage from '../assets/image/package2/makesh.png';
-import makeshErrorImage from '../assets/image/package2/makesh-error.png';
-import raneshImage from '../assets/image/package2/ranesh.png';
+import imageMakesh from '../assets/image/package2/makesh.png';
+import imageMakeshError from '../assets/image/package2/makesh-error.png';
+import imageRanesh from '../assets/image/package2/ranesh.png';
 import imageMakeshArrow from '../assets/image/package2/makesh-arrow.png';
 import imageRaneshArrow from '../assets/image/package2/ranesh-arrow.png';
 import imageWaterPump from '../assets/image/water-pump.png';
+import imagePumpActive from '../assets/image/pump-active.png';
+import imagePumpError from '../assets/image/pump-error.png';
+import imagePumpReady from '../assets/image/pump-ready.png';
 
 
 
@@ -31,7 +34,7 @@ const package5 = memo(() => {
         <React.Fragment>
             <div id="package-wrapper">
                 <div className="card mt-1 mt-lg-3">
-                    <div className="card-header bg-success-subtle text-start">
+                    <div id="station-status-parent" className="card-header bg-success-subtle text-start">
                         <span id="station-status">وضعیت کلی دستگاه : </span>
                         <img id="connection-status-signal-ok" src={signaloksvg} height="24" width="24" className="float-end" />
                         <img id="connection-status-signal-lost" src={signallostsvg} height="24" width="24" className="float-end" />
@@ -107,7 +110,7 @@ const package5 = memo(() => {
                                                 BAR
                                             </td>
                                         </tr>
-                                        <tr id="wraper-auto-pressure">
+                                        <tr id="wraper-auto-pressure" style={{ display: "none" }}>
                                             <td><label className="label-title">فشار رانش</label></td>
                                             <td>
                                                 <div className="input-group input-group-sm w-100">
@@ -121,7 +124,7 @@ const package5 = memo(() => {
                                                 BAR
                                             </td>
                                         </tr>
-                                        <tr id="wraper-frequency">
+                                        <tr id="wraper-frequency" style={{ display: "none" }}>
                                             <td><label className="label-title">فرکانس</label></td>
                                             <td>
                                                 <div className="form-group">
@@ -143,9 +146,9 @@ const package5 = memo(() => {
                         </div>
                         <div className="col-sm-12 col-lg-8 text-center">
                             <img src={package2Image} className="img-fluid" draggable="false" id="image-package" />
-                            <img src={makeshImage} id="image-makesh" style={{ display: "none" }} />
-                            <img src={makeshErrorImage} id="image-makesh-error" style={{ display: "none" }} />
-                            <img src={raneshImage} id="image-ranesh" style={{ display: "none" }} />
+                            <img src={imageMakesh} id="image-makesh"  />
+                            <img src={imageMakeshError} id="image-makesh-error" style={{ display: "none" }} />
+                            <img src={imageRanesh} id="image-ranesh"  />
 
                             <img src={imageMakeshArrow} id="image-makesh-arrow1" />
                             <img src={imageMakeshArrow} id="image-makesh-arrow2" />
@@ -156,20 +159,20 @@ const package5 = memo(() => {
                             <img src={imageWaterPump} id="image-water-pump1" />
                             <img src={imageWaterPump} id="image-water-pump2" />
 
-                            <img src="/Images/pump-active.png" id="image-pump1-active" style={{ display: "none" }} />
-                            <img src="/Images/pump-active.png" id="image-pump2-active" style={{ display: "none" }} />
+                            <img src={imagePumpActive} id="image-pump-active1"  />
+                            <img src={imagePumpActive} id="image-pump-active2"  />
 
-                            <img src="/Images/pipe-error.png" id="image-pipe-error1" style={{ display: "none" }} />
-                            <img src="/Images/pipe-error.png" id="image-pipe-error2" style={{ display: "none" }} />
+                            <img src={imagePumpError} id="image-pump-error1" style={{ display: "none" }} />
+                            <img src={imagePumpError} id="image-pump-error2" style={{ display: "none" }} />
 
-                            <img src="/Images/pipe.png" id="image-pipe1" style={{ display: "none" }} />
-                            <img src="/Images/pipe.png" id="image-pipe2" style={{ display: "none" }} />
+                            <img src={imagePumpReady} id="image-pump-ready1" style={{ display: "none" }} />
+                            <img src={imagePumpReady} id="image-pump-ready2" style={{ display: "none" }} />
 
-                            <label id="pump1-run-time"> کارکرد پمپ 1 : </label>
-                            <label id="pump2-run-time"> کارکرد پمپ 2 : </label>
+                            <label id="run-time-pump1"> کارکرد پمپ 1 : </label>
+                            <label id="run-time-pump2"> کارکرد پمپ 2 : </label>
 
-                            <label id="label-input-presure"> 0.0 Bar </label>
-                            <label id="label-output-presure"> 0.0 Bar </label>
+                            <label id="label-input-pressure"> 0.0 Bar </label>
+                            <label id="label-output-pressure"> 0.0 Bar </label>
                         </div>
                     </div>
                 </div>
