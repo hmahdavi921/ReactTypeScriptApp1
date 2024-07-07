@@ -1,12 +1,10 @@
-﻿import React, { ChangeEvent, memo, useEffect } from "react";
+﻿import React, { ChangeEvent, memo, useEffect, useState } from "react";
 import hourglasssvg from '../assets/svg/hourglass.svg';
 import signalerrorsvg from '../assets/svg/signal-error.svg';
 import signallostsvg from '../assets/svg/signal-lost.svg';
 import signaloksvg from '../assets/svg/signal-ok.svg';
 import package2Image from '../assets/image/package2.png';
 import ToggleSwitch from "./ToggleSwitch";
-import '../assets/css/package2.css';
-
 import imageMakesh from '../assets/image/package2/makesh.png';
 import imageMakeshError from '../assets/image/package2/makesh-error.png';
 import imageRanesh from '../assets/image/package2/ranesh.png';
@@ -16,15 +14,37 @@ import imageWaterPump from '../assets/image/water-pump.png';
 import imagePumpActive from '../assets/image/pump-active.png';
 import imagePumpError from '../assets/image/pump-error.png';
 import imagePumpReady from '../assets/image/pump-ready.png';
+import '../assets/css/package2.css';
 
 
 
 
 const package5 = memo(() => {
 
+    const [count, setCount] = useState(0);
+    const [data, setData] = useState([]);
     useEffect(() => {
-        //console.log('package5 - useEffect');
-    });
+
+        const interval = setInterval(() => {
+            setCount(count + 1);
+            fetch('/api/home')
+                .then((response) => {
+                    //console.log(res);
+                    setData(response);
+                    //console.log('--------------------------------');
+                    console.log(response);
+                }).catch(error => {
+                    // Handle any errors that occurred during the fetch
+                    console.error('Fetch error:', error);
+                });
+                //.then((data) => {
+                //    console.log(data);
+                //});
+        }, 1000);
+
+        //Clearing the interval
+        return () => clearInterval(interval);
+    }, [count]);
     function handleOnFocus(e: ChangeEvent<HTMLInputElement>) {
         e.target.blur();
     }
@@ -35,7 +55,7 @@ const package5 = memo(() => {
             <div id="package-wrapper">
                 <div className="card mt-1 mt-lg-3">
                     <div id="station-status-parent" className="card-header bg-success-subtle text-start">
-                        <span id="station-status">وضعیت کلی دستگاه : </span>
+                        <span id="station-status">وضعیت کلی دستگاه : {count}</span>
                         <img id="connection-status-signal-ok" src={signaloksvg} height="24" width="24" className="float-end" />
                         <img id="connection-status-signal-lost" src={signallostsvg} height="24" width="24" className="float-end" />
                         <img id="connection-status-signal-error" src={signalerrorsvg} height="24" width="24" className="float-end" />
@@ -144,11 +164,11 @@ const package5 = memo(() => {
                                 </table>
                             </div>
                         </div>
-                        <div className="col-sm-12 col-lg-8 text-center">
+                        <div className="col-sm-12 col-lg-8 text-center" id="image-package-parent">
                             <img src={package2Image} className="img-fluid" draggable="false" id="image-package" />
-                            <img src={imageMakesh} id="image-makesh"  />
+                            <img src={imageMakesh} id="image-makesh" />
                             <img src={imageMakeshError} id="image-makesh-error" style={{ display: "none" }} />
-                            <img src={imageRanesh} id="image-ranesh"  />
+                            <img src={imageRanesh} id="image-ranesh" />
 
                             <img src={imageMakeshArrow} id="image-makesh-arrow1" />
                             <img src={imageMakeshArrow} id="image-makesh-arrow2" />
@@ -159,8 +179,8 @@ const package5 = memo(() => {
                             <img src={imageWaterPump} id="image-water-pump1" />
                             <img src={imageWaterPump} id="image-water-pump2" />
 
-                            <img src={imagePumpActive} id="image-pump-active1"  />
-                            <img src={imagePumpActive} id="image-pump-active2"  />
+                            <img src={imagePumpActive} id="image-pump-active1" />
+                            <img src={imagePumpActive} id="image-pump-active2" />
 
                             <img src={imagePumpError} id="image-pump-error1" style={{ display: "none" }} />
                             <img src={imagePumpError} id="image-pump-error2" style={{ display: "none" }} />
@@ -177,8 +197,6 @@ const package5 = memo(() => {
                     </div>
                 </div>
             </div>
-            {/*<br />*/}
-            {/*<br />*/}
 
             <div id="pump-data-wrapper" className="mt-5">
                 <div className="row flex-row-reverse justify-content-center">

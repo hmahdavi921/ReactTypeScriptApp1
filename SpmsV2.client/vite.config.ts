@@ -46,8 +46,7 @@ export default defineConfig({
             '^/weatherforecast': {
                 target,
                 secure: false
-            }
-            ,
+            },
             '^/pingauth': {
                 target,
                 secure: false
@@ -69,6 +68,10 @@ export default defineConfig({
                 secure: false
             },
             '^/createRole': {
+                target,
+                secure: false
+            },
+            '^/api/home': {
                 target,
                 secure: false
             }

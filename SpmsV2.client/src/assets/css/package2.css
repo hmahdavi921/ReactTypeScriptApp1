@@ -1,8 +1,8 @@
 #image-makesh, #image-makesh-error {
     position: absolute;
-    width: 183px;
-    top: 140px;
-    right: 1183px;
+    width: 11%;
+    top: 24.5%;
+    right: 69.7%;
     opacity: 0.7;
 }
 
@@ -117,6 +117,7 @@
     direction: ltr;
     width: 111px;
 }
+
 /**********************************************************************************************************
     *
     *
@@ -124,7 +125,6 @@
     *
     *
 ***********************************************************************************************************/
-
 @media (max-width: 768px) {
     #image-makesh, #image-makesh-error {
         width: 73px;
@@ -221,7 +221,8 @@
         font-size: 15px;
         width: 83px;
     }
+
     #station-status-parent {
-         height: 77px;
+        height: 77px;
     }
 }
