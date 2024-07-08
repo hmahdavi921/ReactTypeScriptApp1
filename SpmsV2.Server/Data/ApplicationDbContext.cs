@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ReactApp1.Server.Data
+namespace SpmsV2.Server.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

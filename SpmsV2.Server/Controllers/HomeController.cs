@@ -1,21 +1,31 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
-using System.Text;
+
 
 namespace SpmsV2.Server.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
     public class HomeController : ControllerBase
     {
-        
-        //[Authorize(Roles = "Guard,User,Beneficiary,Developer,Guest,Admin")]
-        [HttpGet(Name = "/GetPackageStatus")]
-        public IActionResult GetPackageStatus()
+        [Route("/home/PackageStatus")]
+        [Authorize(Roles = "Guard,User,Beneficiary,Developer,Guest,Admin")]
+        [HttpGet]
+        public IActionResult PackageStatus()
         {
-            return Ok(DateTime.Now);
+            try
+            {
+
+
+
+
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
             //try
             //{
             //    GetPackageStatusResult status = new GetPackageStatusResult();

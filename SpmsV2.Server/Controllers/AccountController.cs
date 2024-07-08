@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using ReactApp1.Server.Data;
-using System.Security.Claims;
+using SpmsV2.Server.Data;
 
-namespace ReactTypeScriptApp1.Server.Controllers
+namespace SpmsV2.Server.Controllers
 {
     [ApiController]
     public class AccountController : ControllerBase

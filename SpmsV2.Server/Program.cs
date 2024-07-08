@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ReactApp1.Server.Data;
+using SpmsV2.Server.Data;
 
 namespace SpmsV2.Server
 {

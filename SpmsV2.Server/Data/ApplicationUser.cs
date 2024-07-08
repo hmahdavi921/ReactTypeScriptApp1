@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace ReactApp1.Server.Data
+namespace SpmsV2.Server.Data
 {
     public class ApplicationUser : IdentityUser
     {

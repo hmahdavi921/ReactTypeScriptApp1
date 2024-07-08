@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
-namespace ReactTypeScriptApp1.Server.Controllers
+namespace SpmsV2.Server.Controllers
 {
     [Authorize(Roles = "Developer")]
     [Route("api/[controller]")]

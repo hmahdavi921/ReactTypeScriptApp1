@@ -70,10 +70,6 @@ export default defineConfig({
             '^/createRole': {
                 target,
                 secure: false
-            },
-            '^/api/home': {
-                target,
-                secure: false
             }
         },
         port: 5173,

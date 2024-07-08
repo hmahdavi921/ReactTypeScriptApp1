@@ -18,7 +18,15 @@
 		<SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
 		<UserSecretsId>7d615497-8270-4be4-b276-510fd7c2ccb9</UserSecretsId>
 		<TypeScriptJSXEmit>none</TypeScriptJSXEmit>
+		<ApplicationIcon>bin\Debug\net8.0\favicon.ico</ApplicationIcon>
+		
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Include="bin\Debug\net8.0\favicon.ico" />
+	</ItemGroup>
+
+	
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
