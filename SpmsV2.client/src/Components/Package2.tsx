@@ -19,7 +19,7 @@ import '../assets/css/package2.css';
 
 
 
-const package5 = memo(() => {
+const package5 = () => {
 
     const [count, setCount] = useState(0);
     const [data, setData] = useState([]);
@@ -27,7 +27,7 @@ const package5 = memo(() => {
 
         const interval = setInterval(() => {
             setCount(count + 1);
-            fetch('/api/home')
+            fetch('/home/PackageStatus')
                 .then((response) => {
                     //console.log(res);
                     setData(response);
@@ -291,5 +291,5 @@ const package5 = memo(() => {
         </React.Fragment>
     )
 
-});
+};
 export default package5;

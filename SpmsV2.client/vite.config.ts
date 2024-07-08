@@ -70,6 +70,10 @@ export default defineConfig({
             '^/createRole': {
                 target,
                 secure: false
+            },
+            '^/home/PackageStatus': {
+                target,
+                secure: false
             }
         },
         port: 5173,

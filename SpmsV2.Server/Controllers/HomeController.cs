@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SpmsV2.Server.Data;
 
 
 namespace SpmsV2.Server.Controllers
@@ -14,12 +15,15 @@ namespace SpmsV2.Server.Controllers
         {
             try
             {
+                AspNetUsers user = new AspNetUsers();
+                using (SpmsTest1Context db = new SpmsTest1Context())
+                {
+                    user = db.AspNetUsers.First();
+                }
 
 
 
-
-
-                return Ok();
+                return Ok(user);
             }
             catch (Exception e)
             {

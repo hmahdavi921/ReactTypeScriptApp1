@@ -1,0 +1,2 @@
+﻿Scaffold-DbContext "Server=.;Database=spms-test-1;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data -force -NoPluralize
+
