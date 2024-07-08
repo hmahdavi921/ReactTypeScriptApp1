@@ -10,7 +10,7 @@ using SpmsV2.Server.Data;
 
 #nullable disable
 
-namespace ReactTypeScriptApp1.Server.Migrations
+namespace SpmsV2.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240530083912_create-db")]

@@ -1,4 +1,4 @@
-namespace ReactTypeScriptApp1.Server
+namespace SpmsV2.Server
 {
     public class WeatherForecast
     {

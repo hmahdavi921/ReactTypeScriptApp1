@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ReactTypeScriptApp1.Server.Migrations
+namespace SpmsV2.Server.Migrations
 {
     /// <inheritdoc />
     public partial class createdb : Migration

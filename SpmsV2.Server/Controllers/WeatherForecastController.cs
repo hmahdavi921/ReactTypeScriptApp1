@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ReactTypeScriptApp1.Server.Controllers
+namespace SpmsV2.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]

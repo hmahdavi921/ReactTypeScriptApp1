@@ -8,7 +8,7 @@ using SpmsV2.Server.Data;
 
 #nullable disable
 
-namespace ReactTypeScriptApp1.Server.Migrations
+namespace SpmsV2.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
