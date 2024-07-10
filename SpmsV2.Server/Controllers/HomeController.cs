@@ -8,6 +8,31 @@ namespace SpmsV2.Server.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
+        [Route("/home/Package")]
+        [Authorize(Roles = "Guard,User,Beneficiary,Developer,Guest,Admin")]
+        [HttpGet]
+        public IActionResult Package()
+        {
+            try
+            {
+                AspNetUsers user = new AspNetUsers();
+                using (SpmsTest1Context db = new SpmsTest1Context())
+                {
+                    user = db.AspNetUsers.First();
+                }
+
+
+
+                return Ok(user);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+
+
         [Route("/home/PackageStatus")]
         [Authorize(Roles = "Guard,User,Beneficiary,Developer,Guest,Admin")]
         [HttpGet]

@@ -74,6 +74,10 @@ export default defineConfig({
             '^/home/PackageStatus': {
                 target,
                 secure: false
+            },
+            '^/home/Package': {
+                target,
+                secure: false
             }
         },
         port: 5173,
