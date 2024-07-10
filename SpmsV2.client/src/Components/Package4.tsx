@@ -9,7 +9,7 @@ import ToggleSwitch from "./ToggleSwitch";
 
 
 
-const package5 = memo(() => {
+const package4 = memo(() => {
 
     useEffect(() => {
         //console.log('package5 - useEffect');
@@ -327,4 +327,4 @@ const package5 = memo(() => {
     )
 
 });
-export default package5;
+export default package4;

@@ -17,34 +17,34 @@ import imagePumpReady from '../assets/image/pump-ready.png';
 import '../assets/css/package2.css';
 
 
+const package2 = memo(() => {
+  
 
+    const [data, setData] = useState({
+        id: String,
+        email : String
+    })
 
-const package5 = () => {
-
-    const [count, setCount] = useState(0);
-    const [data, setData] = useState([]);
     useEffect(() => {
 
         const interval = setInterval(() => {
-            setCount(count + 1);
             fetch('/home/PackageStatus')
+                .then(response => response.json())
                 .then((response) => {
-                    //console.log(res);
                     setData(response);
-                    //console.log('--------------------------------');
-                    console.log(response);
+                    //console.log(data);
                 }).catch(error => {
                     // Handle any errors that occurred during the fetch
                     console.error('Fetch error:', error);
                 });
-                //.then((data) => {
-                //    console.log(data);
-                //});
+            //.then((data) => {
+            //    console.log(data);
+            //});
         }, 1000);
 
         //Clearing the interval
         return () => clearInterval(interval);
-    }, [count]);
+    }, []);
     function handleOnFocus(e: ChangeEvent<HTMLInputElement>) {
         e.target.blur();
     }
@@ -55,7 +55,7 @@ const package5 = () => {
             <div id="package-wrapper">
                 <div className="card mt-1 mt-lg-3">
                     <div id="station-status-parent" className="card-header bg-success-subtle text-start">
-                        <span id="station-status">وضعیت کلی دستگاه : {count}</span>
+                        <span id="station-status">وضعیت کلی دستگاه : {data.email + " --- " + data.id}</span>
                         <img id="connection-status-signal-ok" src={signaloksvg} height="24" width="24" className="float-end" />
                         <img id="connection-status-signal-lost" src={signallostsvg} height="24" width="24" className="float-end" />
                         <img id="connection-status-signal-error" src={signalerrorsvg} height="24" width="24" className="float-end" />
@@ -291,5 +291,5 @@ const package5 = () => {
         </React.Fragment>
     )
 
-};
-export default package5;
+});
+export default package2;
