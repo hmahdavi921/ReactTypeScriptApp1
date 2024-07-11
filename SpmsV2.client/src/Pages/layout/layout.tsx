@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState, useContext } from 'react';
+﻿import React, { useEffect, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutLink from '../../Components/LogoutLink';
 import LayoutContext from '../../Components/LayoutContext.tsx';
@@ -93,7 +93,7 @@ function Layout({ children }: { children: React.ReactNode }) {
             </header>
             <div id="company-info-wraper" className="d-none d-lg-block">
                 <div className=" text-center">
-                    <p id="company-name">{layoutcontext.Organization} </p>
+                    <p id="company-name">{ layoutcontext.Organization } </p>
                     <p id="package-name" style={{ fontWeight: "600" }}> {layoutcontext.Name} </p>
                     <p id="package-code">({layoutcontext.Code}) ( {layoutcontext.Version})</p>
                 </div>
