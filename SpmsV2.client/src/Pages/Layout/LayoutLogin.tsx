@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import logo from '../../assets/image/logo.png';
 import 'bootstrap/dist/css/bootstrap.rtl.css';
 import '../../assets/css/dashboard.rtl.css';
@@ -9,13 +9,25 @@ import '../../assets/css/dashboard.rtl.css';
 
 function LayoutLogin({ children }) {
 
-    //const [user, setUser] = useState({});
-    //const { id } = useParams();
+    const [packageData, setPackage] = useState({
+        Organization: String,
+        Name: String,
+        Code: String,
+        Version: String
+    })
 
     useEffect(() => {
-        console.info('layoutLogin -> useEffect');
-        //console.info(children);
-    }, [])
+        fetch('/home/Package')
+            .then(response => response.json())
+            .then((response) => {
+                setPackage(response);
+                console.log("LayoutLogin -> packageData : " + packageData);
+            }).catch(error => {
+                // Handle any errors that occurred during the fetch
+                console.error('Fetch error:', error);
+            });
+
+    }, []);
 
 
     return (
@@ -26,13 +38,13 @@ function LayoutLogin({ children }) {
                     <span className="d-md-inline">&nbsp; سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
                 </a>
             </header>
-            <div id="company-info-wraper" className="d-none d-lg-block" style={{ top: "-55px" }}>
-                <div className="text-center">
-                    <p id="company-name">آب منطقه ای چهارمحال و بختیاری</p>
-                    <p id="package-name " style={{ fontWeight: "600" }}>پروژه بن بروجن ایستگاه شماره 1</p>
-                    <p id="package-code">( P18 + p6 ) ( 14020901)</p>
-                </div>
-            </div>
+            {/*<div id="company-info-wraper" className="d-none d-lg-block" style={{ top: "-55px" }}>*/}
+            {/*    <div className="text-center">*/}
+            {/*        <p id="company-name">آب منطقه ای چهارمحال و بختیاری</p>*/}
+            {/*        <p id="package-name " style={{ fontWeight: "600" }}>پروژه بن بروجن ایستگاه شماره 1</p>*/}
+            {/*        <p id="package-code">( P18 + p6 ) ( 14020901)</p>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <div id="main-container" className="container-fluid">
                 <div className="row">
                     <main id="main" className="col">
@@ -48,12 +60,12 @@ function LayoutLogin({ children }) {
                     </main>
                 </div>
             </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <br />
             <br />
             <br />

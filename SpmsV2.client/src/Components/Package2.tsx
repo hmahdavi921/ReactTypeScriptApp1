@@ -1,4 +1,4 @@
-﻿import React, { ChangeEvent, memo, useEffect, useState } from "react";
+﻿import React, { ChangeEvent, createContext, memo, useEffect, useState } from "react";
 import hourglasssvg from '../assets/svg/hourglass.svg';
 import signalerrorsvg from '../assets/svg/signal-error.svg';
 import signallostsvg from '../assets/svg/signal-lost.svg';
@@ -17,13 +17,13 @@ import imagePumpReady from '../assets/image/pump-ready.png';
 import '../assets/css/package2.css';
 
 
-const package2 = memo(() => {
-  
+const package2 = () => {
+
 
     const [data, setData] = useState({
         id: String,
-        email : String
-    })
+        email: String
+    });
 
     useEffect(() => {
 
@@ -40,7 +40,7 @@ const package2 = memo(() => {
             //.then((data) => {
             //    console.log(data);
             //});
-        }, 1000);
+        }, 10000);
 
         //Clearing the interval
         return () => clearInterval(interval);
@@ -291,5 +291,5 @@ const package2 = memo(() => {
         </React.Fragment>
     )
 
-});
+};
 export default package2;

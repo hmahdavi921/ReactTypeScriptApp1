@@ -1,6 +1,7 @@
-﻿import React, { useEffect } from 'react';
+﻿import React, { useEffect, useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutLink from '../../Components/LogoutLink';
+import LayoutContext from '../../Components/LayoutContext.tsx';
 import aboutsvg from '../../assets/svg/about.svg';
 import burgermenusvg from '../../assets/svg/burger-menu.svg';
 import calendersvg from '../../assets/svg/calender.svg';
@@ -17,15 +18,12 @@ import '../../assets/js/bootstrap.bundle.min.js';
 
 
 
-
 function Layout({ children }: { children: React.ReactNode }) {
 
-    //const [user, setUser] = useState({});
-    //const { id } = useParams();
+    const layoutcontext = useContext(LayoutContext);
 
     useEffect(() => {
-        //console.info('layout -> useEffect');
-
+        //console.log(layoutcontext)
     }, [])
 
 
@@ -41,7 +39,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                     <li className="nav-item dropdown">
                         <a className="dropdown-item mt-lg-2 mt-2 fs-7 d-none d-lg-block" href="#">
                             <span id="user-name" className="d-inline">
-                                کاربر حسین مهدوی
+                                کاربر ???????
                             </span>
                         </a>
                     </li>
@@ -95,9 +93,9 @@ function Layout({ children }: { children: React.ReactNode }) {
             </header>
             <div id="company-info-wraper" className="d-none d-lg-block">
                 <div className=" text-center">
-                    <p id="company-name">آب منطقه ای چهارمحال و بختیاری</p>
-                    <p id="package-name" style={{ fontWeight: "600" }}>پروژه بن بروجن ایستگاه شماره 1</p>
-                    <p id="package-code">( P18 + p6 ) ( 14020901)</p>
+                    <p id="company-name">{layoutcontext.Organization} </p>
+                    <p id="package-name" style={{ fontWeight: "600" }}> {layoutcontext.Name} </p>
+                    <p id="package-code">({layoutcontext.Code}) ( {layoutcontext.Version})</p>
                 </div>
             </div>
             <div id="main-container" className="container-fluid">
@@ -165,7 +163,9 @@ function Layout({ children }: { children: React.ReactNode }) {
                     </div>
 
                     <main id="main" className="col-md-9 ms-sm-auto col-lg-11 px-md-4">
+
                         {children}
+
                     </main>
                 </div>
             </div>

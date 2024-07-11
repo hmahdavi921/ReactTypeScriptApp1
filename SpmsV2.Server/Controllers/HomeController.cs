@@ -9,20 +9,17 @@ namespace SpmsV2.Server.Controllers
     public class HomeController : ControllerBase
     {
         [Route("/home/Package")]
-        [Authorize(Roles = "Guard,User,Beneficiary,Developer,Guest,Admin")]
+        [Authorize]
         [HttpGet]
         public IActionResult Package()
         {
             try
             {
-                AspNetUsers user = new AspNetUsers();
+                Package user = new Package();
                 using (SpmsTest1Context db = new SpmsTest1Context())
                 {
-                    user = db.AspNetUsers.First();
+                    user = db.Package.First();
                 }
-
-
-
                 return Ok(user);
             }
             catch (Exception e)
@@ -45,9 +42,6 @@ namespace SpmsV2.Server.Controllers
                 {
                     user = db.AspNetUsers.First();
                 }
-
-
-
                 return Ok(user);
             }
             catch (Exception e)
