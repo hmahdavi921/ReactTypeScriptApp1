@@ -1,8 +1,29 @@
 ﻿import bellsvg from '../assets/svg/bell.svg';
 import logo from '../assets/image/logo.png';
 import burgermenusvg from '../assets/svg/burger-menu.svg';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
+
+    const [userData, setUserData] = useState({
+        id: String,
+        email: String
+    });
+
+    useEffect(() => {
+        fetch('/home/User')
+            .then(response => response.json())
+            .then((response) => {
+                setUserData(response);
+                //console.log(userData);
+            }).catch(error => {
+                // Handle any errors that occurred during the fetch
+                console.error('Fetch error:', error);
+            });
+
+        //console.log(layoutcontext)
+
+    }, []);
 
     return (
         <header className="navbar flex-md-nowrap p-0" data-bs-theme="light">

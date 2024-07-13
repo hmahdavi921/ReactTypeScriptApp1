@@ -78,6 +78,10 @@ export default defineConfig({
             '^/home/Package': {
                 target,
                 secure: false
+            },
+            '^/home/User': {
+                target,
+                secure: false
             }
         },
         port: 5173,

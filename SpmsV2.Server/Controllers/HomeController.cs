@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.Language.Intermediate;
 using SpmsV2.Server.Data;
+//using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 
 namespace SpmsV2.Server.Controllers
@@ -10,6 +13,30 @@ namespace SpmsV2.Server.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
+
+        [Route("/home/User")]
+        [Authorize]
+        [HttpGet]
+        public IActionResult User()
+        {
+            try
+            {
+                var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                Profile package;
+                using (SpmsTest1Context db = new SpmsTest1Context())
+                {
+                    //package = db.Profile.First(x=> x.UserId== userManager.GetUserId())
+                }
+                return Ok(package);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+
         [Route("/home/Package")]
         [Authorize]
         [HttpGet]
