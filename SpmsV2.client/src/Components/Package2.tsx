@@ -40,11 +40,12 @@ const package2 = () => {
             //.then((data) => {
             //    console.log(data);
             //});
-        }, 10000);
+        }, 500);
 
         //Clearing the interval
         return () => clearInterval(interval);
     }, []);
+
     function handleOnFocus(e: ChangeEvent<HTMLInputElement>) {
         e.target.blur();
     }

@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.Language.Intermediate;
 using SpmsV2.Server.Data;
 
 
 namespace SpmsV2.Server.Controllers
 {
+
     [ApiController]
     public class HomeController : ControllerBase
     {
@@ -15,12 +17,13 @@ namespace SpmsV2.Server.Controllers
         {
             try
             {
-                Package user = new Package();
+
+                Package package;
                 using (SpmsTest1Context db = new SpmsTest1Context())
                 {
-                    user = db.Package.First();
+                    package = db.Package.First();
                 }
-                return Ok(user);
+                return Ok(package);
             }
             catch (Exception e)
             {
