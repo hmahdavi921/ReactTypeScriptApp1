@@ -23,12 +23,12 @@ namespace SpmsV2.Server.Controllers
             {
                 var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-                Profile package;
+                Profile profile;
                 using (SpmsTest1Context db = new SpmsTest1Context())
                 {
-                    //package = db.Profile.First(x=> x.UserId== userManager.GetUserId())
+                    profile = db.Profile.First(x => x.UserId == userId);
                 }
-                return Ok(package);
+                return Ok(profile);
             }
             catch (Exception e)
             {

@@ -33,7 +33,7 @@ const Header = () => {
             </a>
             <ul className="navbar-nav flex-row">
                 <li className="nav-item dropdown">
-                    <a className="dropdown-item mt-lg-2 mt-2 mb-3 m-lg-3 fs-7 d-none d-lg-block" href="#">
+                    <a className="dropdown-item mt-lg-2 mt-2 mb-3 fs-7 d-none d-lg-block" href="#">
                         <span id="user-name" className="d-inline">
                             کاربر حسین مهدوی
                         </span>

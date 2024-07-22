@@ -42,11 +42,13 @@ body {
 .sidebar-heading {
     font-size: .75rem;
 }
-
+#user-name {
+    margin-left: 15px;
+}
+ 
 /*
  * Navbar
  */
-
 .navbar-brand {
     padding-top: .75rem;
     padding-bottom: .75rem;

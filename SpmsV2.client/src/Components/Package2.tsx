@@ -19,7 +19,7 @@ import '../assets/css/package2.css';
 
 const package2 = () => {
 
-
+    const [fetchDataStatus, setfetchDataStatus] = useState("");
     const [data, setData] = useState({
         id: String,
         email: String
@@ -28,13 +28,20 @@ const package2 = () => {
     useEffect(() => {
 
         const interval = setInterval(() => {
+            setfetchDataStatus("loading");
             fetch('/home/PackageStatus')
                 .then(response => response.json())
                 .then((response) => {
+                    if (!response) {
+                        setfetchDataStatus("loading-lots");
+                    } {
+                        setfetchDataStatus("loading-ok");
+                    }
+
                     setData(response);
                     //console.log(data);
                 }).catch(error => {
-                    // Handle any errors that occurred during the fetch
+                    setfetchDataStatus("loading-fail");
                     console.error('Fetch error:', error);
                 });
             //.then((data) => {
@@ -57,10 +64,21 @@ const package2 = () => {
                 <div className="card mt-1 mt-lg-3">
                     <div id="station-status-parent" className="card-header bg-success-subtle text-start">
                         <span id="station-status">وضعیت کلی دستگاه : {data.email + " --- " + data.id}</span>
-                        <img id="connection-status-signal-ok" src={signaloksvg} height="24" width="24" className="float-end" />
-                        <img id="connection-status-signal-lost" src={signallostsvg} height="24" width="24" className="float-end" />
-                        <img id="connection-status-signal-error" src={signalerrorsvg} height="24" width="24" className="float-end" />
-                        <img id="connection-status-hourglass" src={hourglasssvg} height="24" width="24" className="float-end" />
+                        {
+                            fetchDataStatus === "loading" ?
+                                <img id="connection-status-hourglass" src={hourglasssvg} height="24" width="24" className="float-end" />
+                                : fetchDataStatus === "loading-ok" ?
+                                    <img id="connection-status-signal-ok" src={signaloksvg} height="24" width="24" className="float-end" />
+                                    : fetchDataStatus === "loading-fail" ?
+                                        <img id="connection-status-signal-error" src={signalerrorsvg} height="24" width="24" className="float-end" />
+                                        : fetchDataStatus === "loading-lots" ?
+                                            <img id="connection-status-signal-lost" src={signallostsvg} height="24" width="24" className="float-end" />
+                                            : ""
+                        }
+
+
+
+
                     </div>
                     <div className="card-body row">
                         <div className="col-sm-12 col-lg-2">
