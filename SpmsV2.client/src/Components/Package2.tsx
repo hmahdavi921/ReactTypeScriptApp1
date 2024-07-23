@@ -34,7 +34,7 @@ const package2 = () => {
                 .then((response) => {
                     if (!response) {
                         setfetchDataStatus("loading-lots");
-                    } {
+                    } else {
                         setfetchDataStatus("loading-ok");
                     }
 
