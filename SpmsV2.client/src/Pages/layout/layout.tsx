@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutLink from '../../Components/LogoutLink';
 import aboutsvg from '../../assets/svg/about.svg';
@@ -13,23 +13,36 @@ import '../../assets/css/dashboard.rtl.css';
 import '../../assets/js/bootstrap.bundle.min.js';
 import StationInfo from '../../Components/StationInfo.tsx';
 import Header from '../../Components/Header.tsx';
- 
+
 
 
 
 function Layout(_props: { children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }) {
 
+    const [userData, setUserData] = useState({
+        firstName: "",
+        lastName: ""
+    });
 
+    useEffect(() => {
+        fetch('/home/User')
+            .then(response => response.json())
+            .then((response) => {
+                setUserData(response);
+                //console.log(userData);
+            }).catch(error => {
+                console.error('Fetch error:', error);
+            });
 
-    //useEffect(() => {
-    //    //console.log(layoutcontext)
-    //}, []);
+        //console.log(layoutcontext)
+
+    }, []);
 
 
 
     return (
         <React.Fragment>
-            <Header />
+            <Header firstName={userData.firstName} lastName={userData.lastName} />
             <StationInfo />
             <div id="main-container" className="container-fluid">
                 <div className="row">
@@ -44,7 +57,9 @@ function Layout(_props: { children: string | number | boolean | React.ReactEleme
                                 <ul className="nav flex-column">
                                     <li className="nav-item d-lg-none">
                                         <span className="d-flex gap-2" aria-current="page">
-                                            <span>کاربر حسین مهدوی</span>
+                                            <span className="mx-auto p-3">
+                                                کاربر {userData.firstName + " " + userData.lastName}
+                                            </span>
                                         </span>
                                     </li>
                                     <li className="nav-item" id="power-menu">

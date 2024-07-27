@@ -33,11 +33,10 @@ const package2 = () => {
                 .then(response => response.json())
                 .then((response) => {
                     if (!response) {
-                        setfetchDataStatus("loading-lots");
+                        setfetchDataStatus("loading-lost");
                     } else {
                         setfetchDataStatus("loading-ok");
                     }
-
                     setData(response);
                     //console.log(data);
                 }).catch(error => {
@@ -71,7 +70,7 @@ const package2 = () => {
                                     <img id="connection-status-signal-ok" src={signaloksvg} height="24" width="24" className="float-end" />
                                     : fetchDataStatus === "loading-fail" ?
                                         <img id="connection-status-signal-error" src={signalerrorsvg} height="24" width="24" className="float-end" />
-                                        : fetchDataStatus === "loading-lots" ?
+                                        : fetchDataStatus === "loading-lost" ?
                                             <img id="connection-status-signal-lost" src={signallostsvg} height="24" width="24" className="float-end" />
                                             : ""
                         }

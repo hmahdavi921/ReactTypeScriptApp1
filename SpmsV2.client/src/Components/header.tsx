@@ -3,27 +3,29 @@ import logo from '../assets/image/logo.png';
 import burgermenusvg from '../assets/svg/burger-menu.svg';
 import { useEffect, useState } from 'react';
 
-const Header = () => {
+const Header = (props: { firstName: string; lastName: string; }) => {
 
-    const [userData, setUserData] = useState({
-        id: String,
-        email: String
-    });
+    //const [userData, setUserData] = useState({
+    //    //id: String,
+    //    //email: String,
+    //    firstName: String,
+    //    lastName: String
+    //});
 
-    useEffect(() => {
-        fetch('/home/User')
-            .then(response => response.json())
-            .then((response) => {
-                setUserData(response);
-                //console.log(userData);
-            }).catch(error => {
-                // Handle any errors that occurred during the fetch
-                console.error('Fetch error:', error);
-            });
+    //useEffect(() => {
+    //    fetch('/home/User')
+    //        .then(response => response.json())
+    //        .then((response) => {
+    //            setUserData(response);
+    //            //console.log(userData);
+    //        }).catch(error => {
+    //            // Handle any errors that occurred during the fetch
+    //            console.error('Fetch error:', error);
+    //        });
 
-        //console.log(layoutcontext)
+    //    //console.log(layoutcontext)
 
-    }, []);
+    //}, []);
 
     return (
         <header className="navbar flex-md-nowrap p-0" data-bs-theme="light">
@@ -35,7 +37,7 @@ const Header = () => {
                 <li className="nav-item dropdown">
                     <a className="dropdown-item mt-lg-2 mt-2 mb-3 fs-7 d-none d-lg-block" href="#">
                         <span id="user-name" className="d-inline">
-                            کاربر حسین مهدوی
+                            کاربر {props.firstName + " " + props.lastName}
                         </span>
                     </a>
                 </li>
