@@ -1,7 +1,7 @@
 ﻿import React, { ChangeEvent, useEffect, useState } from "react";
 import hourglasssvg from '../assets/svg/hourglass.svg';
-import signalerrorsvg from '../assets/svg/signal-error.svg';
-import signallostsvg from '../assets/svg/signal-lost.svg';
+import signallostsvg from '../assets/svg/signal-error.svg';
+import signalerrorsvg from '../assets/svg/signal-lost.svg';
 import signaloksvg from '../assets/svg/signal-ok.svg';
 import package2Image from '../assets/image/package2.png';
 import ToggleSwitch from "./ToggleSwitch";
@@ -40,7 +40,7 @@ const package2 = () => {
                     setData(response);
                     //console.log(data);
                 }).catch(error => {
-                    setfetchDataStatus("loading-fail");
+                    setfetchDataStatus("loading-error");
                     console.error('Fetch error:', error);
                 });
             //.then((data) => {
@@ -68,7 +68,7 @@ const package2 = () => {
                                 <img id="connection-status-hourglass" src={hourglasssvg} height="24" width="24" className="float-end" />
                                 : fetchDataStatus === "loading-ok" ?
                                     <img id="connection-status-signal-ok" src={signaloksvg} height="24" width="24" className="float-end" />
-                                    : fetchDataStatus === "loading-fail" ?
+                                    : fetchDataStatus === "loading-error" ?
                                         <img id="connection-status-signal-error" src={signalerrorsvg} height="24" width="24" className="float-end" />
                                         : fetchDataStatus === "loading-lost" ?
                                             <img id="connection-status-signal-lost" src={signallostsvg} height="24" width="24" className="float-end" />
