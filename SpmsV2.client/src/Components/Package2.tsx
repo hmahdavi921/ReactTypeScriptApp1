@@ -15,19 +15,18 @@ import imagePumpActive from '../assets/image/pump-active.png';
 import imagePumpError from '../assets/image/pump-error.png';
 import imagePumpReady from '../assets/image/pump-ready.png';
 import '../assets/css/package2.css';
+import { useEffectOnce, useInterval } from "react-use";
 
 
 const package2 = () => {
 
     const [fetchDataStatus, setfetchDataStatus] = useState("");
     const [data, setData] = useState({
-        id: String,
-        email: String
+        id: "",
+        email: ""
     });
-
-    useEffect(() => {
-
-        const interval = setInterval(() => {
+    useInterval(
+        () => {
             setfetchDataStatus("loading");
             fetch('/home/PackageStatus')
                 .then(response => response.json())
@@ -46,11 +45,10 @@ const package2 = () => {
             //.then((data) => {
             //    console.log(data);
             //});
-        }, 500);
+        },
+        500
+    );
 
-        //Clearing the interval
-        return () => clearInterval(interval);
-    }, []);
 
     function handleOnFocus(e: ChangeEvent<HTMLInputElement>) {
         e.target.blur();

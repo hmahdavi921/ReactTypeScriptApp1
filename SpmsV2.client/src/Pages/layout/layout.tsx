@@ -13,6 +13,7 @@ import '../../assets/css/dashboard.rtl.css';
 import '../../assets/js/bootstrap.bundle.min.js';
 import StationInfo from '../../Components/StationInfo.tsx';
 import Header from '../../Components/Header.tsx';
+import { useEffectOnce } from 'react-use';
 
 
 
@@ -24,7 +25,7 @@ function Layout(_props: { children: string | number | boolean | React.ReactEleme
         lastName: ""
     });
 
-    useEffect(() => {
+    useEffectOnce(() => {
         fetch('/home/User')
             .then(response => response.json())
             .then((response) => {
@@ -36,7 +37,7 @@ function Layout(_props: { children: string | number | boolean | React.ReactEleme
 
         //console.log(layoutcontext)
 
-    }, []);
+    });
 
 
 

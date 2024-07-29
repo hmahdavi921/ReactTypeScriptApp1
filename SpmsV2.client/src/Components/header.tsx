@@ -1,31 +1,9 @@
 ﻿import bellsvg from '../assets/svg/bell.svg';
 import logo from '../assets/image/logo.png';
 import burgermenusvg from '../assets/svg/burger-menu.svg';
-import { useEffect, useState } from 'react';
+
 
 const Header = (props: { firstName: string; lastName: string; }) => {
-
-    //const [userData, setUserData] = useState({
-    //    //id: String,
-    //    //email: String,
-    //    firstName: String,
-    //    lastName: String
-    //});
-
-    //useEffect(() => {
-    //    fetch('/home/User')
-    //        .then(response => response.json())
-    //        .then((response) => {
-    //            setUserData(response);
-    //            //console.log(userData);
-    //        }).catch(error => {
-    //            // Handle any errors that occurred during the fetch
-    //            console.error('Fetch error:', error);
-    //        });
-
-    //    //console.log(layoutcontext)
-
-    //}, []);
 
     return (
         <header className="navbar flex-md-nowrap p-0" data-bs-theme="light">
@@ -75,7 +53,7 @@ const Header = (props: { firstName: string; lastName: string; }) => {
                 {/*        </li>*/}
                 {/*    </ul>*/}
                 {/*</li>*/}
-                 <li className="nav-item d-md-none">
+                <li className="nav-item d-md-none">
                     <button className="nav-link px-3" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
                         style={{ marginLeft: "13px", marginBottom: "4px" }}>
