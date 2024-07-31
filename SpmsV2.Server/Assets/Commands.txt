@@ -1,2 +1,5 @@
 ﻿Scaffold-DbContext "Server=.;Database=spms-test-1;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data -force -NoPluralize
 
+dotnet ef migrations add AvailableSensor --project SpmsV2.Server --context SpmsTest1Context
+PM> dotnet ef database update --project SpmsV2.Server --context SpmsTest1Context
+

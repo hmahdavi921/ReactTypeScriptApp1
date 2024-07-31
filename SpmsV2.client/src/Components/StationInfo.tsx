@@ -18,15 +18,13 @@ const StationInfo = () => {
     });
 
     useEffect(() => {
-                 
+
         fetch('/home/Package')
             .then(response => response.json())
             .then((response) => {
                 setStationData(response);
-                
-                console.table(response);
+                //console.table(response);
                 //console.table(StationData);
-                
             }).catch(error => {
                 console.error('Fetch error /home/Package:', error);
             });

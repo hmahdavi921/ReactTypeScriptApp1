@@ -30,6 +30,13 @@ public partial class SpmsTest1Context : DbContext
     public virtual DbSet<Package> Package { get; set; }
 
     public virtual DbSet<Profile> Profile { get; set; }
+    public virtual DbSet<LastPackageData> LastPackageData { get; set; }
+    public DbSet<LastPackageCommand> LastPackageCommand { get; set; }
+    public DbSet<Message> Message { get; set; }
+    public DbSet<Pump> Pump { get; set; }
+    public DbSet<Drive> Drive { get; set; }
+    public DbSet<DailyWorkPlan> DailyWorkPlan { get; set; }
+    public DbSet<AvailableSensor> AvailableSensor { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.

@@ -5,6 +5,7 @@ using SpmsV2.Server.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using SpmsV2.Server.Models;
 
 
 namespace SpmsV2.Server.Controllers
@@ -67,16 +68,45 @@ namespace SpmsV2.Server.Controllers
         {
             try
             {
-                AspNetUsers user = new AspNetUsers();
+                PackageStatusResult data = new PackageStatusResult();
+                LastPackageData lastPackageData = new LastPackageData();
+                LastPackageCommand lastPackageCommand = new LastPackageCommand();
+                List<Drive> drives = new List<Drive>();
+                List<Pump> pumps = new List<Pump>();
+                List<DailyWorkPlan> workPlans = new List<DailyWorkPlan>();
+                Package package = new Package();
                 using (SpmsTest1Context db = new SpmsTest1Context())
                 {
-                    user = db.AspNetUsers.First();
+                    drives = db.Drive.ToList();
+                    pumps = db.Pump.ToList();
+                    lastPackageData = db.LastPackageData.First();
+                    package = db.Package.First();
+                    workPlans = db.DailyWorkPlan.ToList();
+                    lastPackageCommand = db.LastPackageCommand.First();
+                    data.Message = db.Message.First().Description;
                 }
-                return Ok(user);
+
+                data.DailyWorkPlans = workPlans;
+                data.Package = package;
+                data.Pumps = pumps;
+                data.Drives = drives;
+                data.LastPackageData = lastPackageData;
+                data.LastCommand = lastPackageCommand;
+                return Ok(new JsonData()
+                {
+                    IsSuccess = true,
+                    Message = "ok ",
+                    Data = data
+                });
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(new JsonData()
+                {
+                    IsSuccess = false,
+                    Message = "Error",
+                    Data = null
+                });
             }
 
             //try
@@ -98,15 +128,15 @@ namespace SpmsV2.Server.Controllers
             //        if (System.Web.HttpContext.Current.Cache["DailyWorkPlan"] == null)
             //        {
             //            List<sp_GetDailyWorkPlan_Result> workPlans = db.sp_GetDailyWorkPlan().ToList();
-            //            status.WorkPlans = new List<sp_GetDailyWorkPlan_Result>();
+            //            status.DailyWorkPlans = new List<sp_GetDailyWorkPlan_Result>();
             //            System.Web.HttpContext.Current.Cache.Add("DailyWorkPlan", workPlans, null, DateTime.Now.AddMinutes(20), Cache.NoSlidingExpiration, CacheItemPriority.AboveNormal, null);
-            //            status.WorkPlans.AddRange(workPlans);
+            //            status.DailyWorkPlans.AddRange(workPlans);
             //        }
             //        else
             //        {
             //            List<sp_GetDailyWorkPlan_Result> workPlans = System.Web.HttpContext.Current.Cache["DailyWorkPlan"] as List<sp_GetDailyWorkPlan_Result>;
-            //            status.WorkPlans = new List<sp_GetDailyWorkPlan_Result>();
-            //            status.WorkPlans.AddRange(workPlans);
+            //            status.DailyWorkPlans = new List<sp_GetDailyWorkPlan_Result>();
+            //            status.DailyWorkPlans.AddRange(workPlans);
             //        }
             //        status.Command = db.sp_GetLastPackageCommand().First();
             //        status.Message = db.sp_GetMessage().First();
