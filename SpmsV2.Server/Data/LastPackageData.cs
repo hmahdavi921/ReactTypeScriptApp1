@@ -1,6 +1,6 @@
 ﻿namespace SpmsV2.Server.Data
 {
-    public  class LastPackageData
+    public class LastPackageData
     {
         public int Id { get; set; }
 
@@ -22,6 +22,8 @@
         public double PumpOutputPressure1 { get; set; }
 
         public double CoolingWaterTemprature1 { get; set; }
+        public int WorkingTime1 { get; set; }
+        public int TotalWorkingTime1 { get; set; }
 
         /// <summary>
         /// ارتباط با درایو 2
@@ -41,6 +43,8 @@
         public double PumpOutputPressure2 { get; set; }
 
         public double CoolingWaterTemprature2 { get; set; }
+        public int WorkingTime2 { get; set; }
+        public int TotalWorkingTime2 { get; set; }
 
         /// <summary>
         /// ارتباط با درایو 3
@@ -60,6 +64,8 @@
         public double PumpOutputPressure3 { get; set; }
 
         public double CoolingWaterTemprature3 { get; set; }
+        public int WorkingTime3 { get; set; }
+        public int TotalWorkingTime3 { get; set; }
 
         /// <summary>
         /// ارتباط با درایو 4
@@ -79,6 +85,8 @@
         public double PumpOutputPressure4 { get; set; }
 
         public double CoolingWaterTemprature4 { get; set; }
+        public int WorkingTime4 { get; set; }
+        public int TotalWorkingTime4 { get; set; }
 
         /// <summary>
         /// ارتباط با درایو 5
@@ -98,6 +106,8 @@
         public double PumpOutputPressure5 { get; set; }
 
         public double CoolingWaterTemprature5 { get; set; }
+        public int WorkingTime5 { get; set; }
+        public int TotalWorkingTime5 { get; set; }
 
         /// <summary>
         /// ارتباط با درایو 6
@@ -117,6 +127,8 @@
         public double PumpOutputPressure6 { get; set; }
 
         public double CoolingWaterTemprature6 { get; set; }
+        public int WorkingTime6 { get; set; }
+        public int TotalWorkingTime6 { get; set; }
 
         /// <summary>
         /// ارتباط با درایو 7
@@ -136,6 +148,8 @@
         public double PumpOutputPressure7 { get; set; }
 
         public double CoolingWaterTemprature7 { get; set; }
+        public int WorkingTime7 { get; set; }
+        public int TotalWorkingTime7 { get; set; }
 
         /// <summary>
         /// ارتباط با درایو 8
@@ -155,6 +169,8 @@
         public double PumpOutputPressure8 { get; set; }
 
         public double CoolingWaterTemprature8 { get; set; }
+        public int WorkingTime8 { get; set; }
+        public int TotalWorkingTime8 { get; set; }
 
         /// <summary>
         /// ارتباط با درایو 8
@@ -174,6 +190,8 @@
         public double PumpOutputPressure9 { get; set; }
 
         public double CoolingWaterTemprature9 { get; set; }
+        public int WorkingTime9 { get; set; }
+        public int TotalWorkingTime9 { get; set; }
 
         /// <summary>
         /// ارتباط با درایو 8
@@ -188,14 +206,13 @@
 
         public double Current10 { get; set; }
 
-        public string Fault10 { get; set; } = "0"; 
+        public string Fault10 { get; set; } = "0";
 
         public double PumpOutputPressure10 { get; set; }
 
         public double CoolingWaterTemprature10 { get; set; }
-
-
-
+        public int WorkingTime10 { get; set; }
+        public int TotalWorkingTime10 { get; set; }
         /// <summary>
         /// ولو ورودی لاین 1 باز است
         /// </summary>

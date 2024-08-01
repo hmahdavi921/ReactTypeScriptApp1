@@ -43,21 +43,25 @@ const package2 = () => {
                 serviceTime: 1000
             }],
             lastPackageData: {
-                driveConnection1: false,
-                coolingWater1: false,
+                driveConnection1: true,
+                coolingWater1: true,
                 frequency1: 0,
                 power1: 0,
                 current1: 0,
                 fault1: "0",
                 pumpOutputPressure1: 0,
+                workingTime1: 0,
+                totalWorkingTime1: 0,
                 coolingWaterTemprature1: 0,
-                driveConnection2: false,
-                coolingWater2: false,
+                driveConnection2: true,
+                coolingWater2: true,
                 frequency2: 0,
                 power2: 0,
                 current2: 0,
                 fault2: "0",
                 pumpOutputPressure2: 0,
+                workingTime2: 0,
+                totalWorkingTime2: 0,
                 coolingWaterTemprature2: 0,
                 phaseControl: true,
                 stationFlood: false,
@@ -167,29 +171,6 @@ const package2 = () => {
     }, []);
 
 
-
-
-
-    function getPumpActiveClass(slave: number): string {
-        if (slave == 1) {
-            if (info.data.lastPackageData.coolingWater1) {
-                if (info.data.lastPackageData.frequency1 > 0) {
-                    return "";
-                }
-            } else {
-                return "d-none";
-            }
-        } else if (slave == 2) {
-            if (info.data.lastPackageData.coolingWater2) {
-                if (info.data.lastPackageData.frequency2 > 0) {
-                    return "";
-                }
-            } else {
-                return "d-none";
-            }
-        }
-        return "";
-    }
     function getThrustWaterClass(): string {
         if (isRunningOnePump() && info.data.lastPackageData.suctionWaterAvailable) {
             return "";
@@ -225,7 +206,7 @@ const package2 = () => {
         e.target.blur();
     }
     function handleWorkPlanChange(event: ChangeEvent<HTMLSelectElement>): void {
-        throw new Error("Function not implemented.");
+        console.log(event.target.value);
     }
     function getLoadingIcon() {
         if (fetchDataStatus == "loading") {
@@ -302,9 +283,9 @@ const package2 = () => {
                                                     id="work-plan"
                                                     defaultValue={2}
                                                     onChange={handleWorkPlanChange}   >
-                                                    <option value="1">برنامه روزانه</option>
-                                                    <option value="2">فشار اتوماتیک</option>
-                                                    <option value="3">کنترل دستی</option>
+                                                    <option value="1" selected={info.data.lastCommand.workPlan == 1 ? true : false}>برنامه روزانه</option>
+                                                    <option value="2" selected={info.data.lastCommand.workPlan == 2 ? true : false}>فشار اتوماتیک</option>
+                                                    <option value="3" selected={info.data.lastCommand.workPlan == 3 ? true : false} >کنترل دستی</option>
                                                 </select>
                                             </td>
                                             <td>
@@ -383,7 +364,7 @@ const package2 = () => {
                                             <td>
                                                 <div className="input-group input-group-sm w-100">
                                                     <div className="input-group-text" data-operation="-">-</div>
-                                                    <input id="auto-pressure" type="number"
+                                                    <input id="auto-pressure" type="text"
                                                         className="form-control" data-value="" onFocus={blureOnFocus}
                                                         value={info.data.lastCommand.thrustPressure} />
                                                     <div className="input-group-text" data-operation="+">+</div>
@@ -400,7 +381,7 @@ const package2 = () => {
                                                 <div className="form-group">
                                                     <div className="input-group input-group-sm">
                                                         <div className="input-group-text" data-operation="-">-</div>
-                                                        <input id="frequency" type="number" className="form-control" data-value=""
+                                                        <input id="frequency" type="text" className="form-control" data-value=""
                                                             onFocus={blureOnFocus} value={info.data.lastCommand.frequency} />
                                                         <div className="input-group-text" data-operation="+">+</div>
                                                         <label></label>
@@ -433,14 +414,8 @@ const package2 = () => {
                             <img src={getSrcPumpStatus(1)} id="image-pump-status1" />
                             <img src={getSrcPumpStatus(2)} id="image-pump-status2" />
 
-                            {/*<img src={imagePumpError} id="image-pump-error1" className={getPumpErrorClass(1)} />*/}
-                            {/*<img src={imagePumpError} id="image-pump-error2" className={getPumpErrorClass(2)} />*/}
-
-                            {/*<img src={imagePumpReady} id="image-pump-ready1" className={getPumpReadyClass(1)} />*/}
-                            {/*<img src={imagePumpReady} id="image-pump-ready2" className={getPumpReadyClass(2)} />*/}
-
-                            <label id="run-time-pump1"> کارکرد پمپ 1 : ----</label>
-                            <label id="run-time-pump2"> کارکرد پمپ 2 : ----</label>
+                            <label id="run-time-pump1"> کارکرد پمپ 1 : {(info.data.lastPackageData.workingTime1 / 60).toFixed(1)}</label>
+                            <label id="run-time-pump2"> کارکرد پمپ 2 : {(info.data.lastPackageData.workingTime2 / 60).toFixed(1)}</label>
 
                             <label id="label-input-pressure"> {info.data.lastPackageData.suctionPressure} Bar </label>
                             <label id="label-output-pressure"> {info.data.lastPackageData.thrustPressure} Bar </label>
@@ -483,7 +458,9 @@ const package2 = () => {
                                         </tr>
                                         <tr>
                                             <td><label className="label-title">زمان کل کارکرد </label></td>
-                                            <td><label id="TotalWorkingTime-pump1" className="label-value">-----</label> H </td>
+                                            <td><label id="TotalWorkingTime-pump1" className="label-value">
+                                                {(info.data.lastPackageData.totalWorkingTime1 / 60).toFixed(1)}
+                                            </label> H </td>
                                         </tr>
                                         <tr>
                                             <td><label className="label-title">خطای درایو </label></td>
@@ -532,7 +509,9 @@ const package2 = () => {
                                         </tr>
                                         <tr>
                                             <td><label className="label-title">زمان کل کارکرد </label></td>
-                                            <td><label id="TotalWorkingTime-pump2" className="label-value">-----</label> H </td>
+                                            <td><label id="TotalWorkingTime-pump2" className="label-value">
+                                                {(info.data.lastPackageData.totalWorkingTime2 / 60).toFixed(1)}
+                                            </label> H </td>
                                         </tr>
                                         <tr>
                                             <td><label className="label-title">خطای درایو </label></td>
