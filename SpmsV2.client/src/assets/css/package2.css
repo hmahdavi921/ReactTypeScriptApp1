@@ -58,7 +58,7 @@
     height: 43px;
 }
 
-#image-pump-active1, #image-pump-error1, #image-pump-ready1 {
+#image-pump-active1, #image-pump-error1, #image-pump-ready1, #image-pump-status1 {
     position: absolute;
     top: 47.5%;
     right: 33%;
@@ -67,7 +67,7 @@
     height: 11.5%;
 }
 
-#image-pump-active2, #image-pump-error2, #image-pump-ready2 {
+#image-pump-active2, #image-pump-error2, #image-pump-ready2, #image-pump-status2 {
     position: absolute;
     top: 68.5%;
     right: 32.4%;

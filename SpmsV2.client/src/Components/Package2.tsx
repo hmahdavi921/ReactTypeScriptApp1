@@ -15,11 +15,13 @@ import imagePumpActive from '../assets/image/pump-active.png';
 import imagePumpError from '../assets/image/pump-error.png';
 import imagePumpReady from '../assets/image/pump-ready.png';
 import '../assets/css/package2.css';
-import { useInterval } from "react-use";
+
 
 
 const package2 = () => {
-
+    //let isRunningOnePumpFlag = false;
+    //let displayThrustWater = false;
+    //const [makeshArrowClass, setMakeshArrowClass] = useState();
     const [fetchDataStatus, setfetchDataStatus] = useState("");
     const [info, setInfo] = useState({
         isSuccess: false,
@@ -57,11 +59,12 @@ const package2 = () => {
                 fault2: "0",
                 pumpOutputPressure2: 0,
                 coolingWaterTemprature2: 0,
-                phaseControl: false,
+                phaseControl: true,
                 stationFlood: false,
                 suctionPressure: 0,
                 thrustPressure: 0,
-                flow: 0
+                flow: 0,
+                suctionWaterAvailable: true
 
             },
             package: {
@@ -134,7 +137,6 @@ const package2 = () => {
             },
             message: ""
         }
-
     });
 
     useEffect(() => {
@@ -151,12 +153,11 @@ const package2 = () => {
                         setfetchDataStatus("loading-ok");
                     }
                     setInfo(response);
-                    info.data.dailyWorkPlans = response.data.dailyWorkPlans;
-                    info.data.pumps = response.data.pumps;
-                    info.data.drives = response.data.drives;
+                    //isRunningOnePumpFlag = isRunningOnePump();
+                    //displayThrustWater = isRunningOnePumpFlag && info.data.lastPackageData.suctionWaterAvailable;
+                    //setMakeshArrowClass();
 
                     console.log();
-
                 }).catch(error => {
                     setfetchDataStatus("loading-error");
                     console.error('Fetch error:', error);
@@ -166,21 +167,66 @@ const package2 = () => {
     }, []);
 
 
-    function getDailyThrustPressure() {
-        //const date = new Date();
-        //const houre = date.getHours();
-        const plan = info.data.dailyWorkPlans[new Date().getHours()];
-        console.log(plan);
-        return 1;
+
+
+
+    function getPumpActiveClass(slave: number): string {
+        if (slave == 1) {
+            if (info.data.lastPackageData.coolingWater1) {
+                if (info.data.lastPackageData.frequency1 > 0) {
+                    return "";
+                }
+            } else {
+                return "d-none";
+            }
+        } else if (slave == 2) {
+            if (info.data.lastPackageData.coolingWater2) {
+                if (info.data.lastPackageData.frequency2 > 0) {
+                    return "";
+                }
+            } else {
+                return "d-none";
+            }
+        }
+        return "";
+    }
+    function getThrustWaterClass(): string {
+        if (isRunningOnePump() && info.data.lastPackageData.suctionWaterAvailable) {
+            return "";
+        } else {
+            return "d-none";
+        }
+    }
+    function getThrustArrowClass(): string {
+        if (isRunningOnePump() && info.data.lastPackageData.suctionWaterAvailable) {
+            return "AnimationOpacity";
+        } else {
+            return "d-none";
+        }
+    }
+    function getMakeshArrowClass(): string {
+
+        let isRunningOnePumpFlag = isRunningOnePump();
+        if (!info.data.lastPackageData.suctionWaterAvailable) {
+            return "d-none";
+        } else if (info.data.lastPackageData.suctionWaterAvailable && isRunningOnePumpFlag) {
+            return "AnimationOpacity";
+        } else if (info.data.lastPackageData.suctionWaterAvailable && !isRunningOnePumpFlag) {
+            return "";
+        } else if (info.data.lastPackageData.suctionWaterAvailable) {
+            return "";
+        }
+        return "";
+    }
+    function isRunningOnePump() {
+        return info.data.lastPackageData.frequency1 > 0 || info.data.lastPackageData.frequency2 > 0;
     }
     function blureOnFocus(e: ChangeEvent<HTMLInputElement>) {
         e.target.blur();
     }
-
     function handleWorkPlanChange(event: ChangeEvent<HTMLSelectElement>): void {
         throw new Error("Function not implemented.");
     }
-
     function getLoadingIcon() {
         if (fetchDataStatus == "loading") {
             return hourglasssvg
@@ -194,6 +240,44 @@ const package2 = () => {
         if (fetchDataStatus == "loading-lost") {
             return signallostsvg
         }
+    }
+    function getSrcPumpStatus(slave: number): string {
+        if (slave == 1) {
+            if (info.data.lastPackageData.coolingWater1 == false) {
+                return imagePumpError;
+            }
+            if (info.data.lastPackageData.frequency1 > 0) {
+                return imagePumpActive;
+            } else {
+                return imagePumpReady;
+            }
+        } else if (slave == 2) {
+            if (info.data.lastPackageData.coolingWater2 == false) {
+                return imagePumpError;
+            }
+            if (info.data.lastPackageData.frequency2 > 0) {
+                return imagePumpActive;
+            } else {
+                return imagePumpReady;
+            }
+        }
+        return "";
+    }
+    function getWaterPumpClass(slave: number): string {
+        if (slave == 1) {
+            if (info.data.lastPackageData.frequency1 > 0) {
+                return "RotatePump";
+            } else {
+                return "";
+            }
+        } else if (slave == 2) {
+            if (info.data.lastPackageData.frequency2 > 0) {
+                return "RotatePump";
+            } else {
+                return "";
+            }
+        }
+        return "";
     }
 
     return (
@@ -282,24 +366,26 @@ const package2 = () => {
                                                 %
                                             </td>
                                         </tr>
-                                        <tr id="wraper-output-pressure">
+                                        <tr id="wraper-output-pressure" className={info.data.lastCommand.workPlan !== 1 ? "d-none" : ""}>
                                             <td><label className="label-title">فشار رانش</label></td>
                                             <td>
                                                 <div className="input-group input-group-sm w-100">
                                                     <input id="output-pressure-daily" type="number" className="form-control text-center" disabled
-                                                        value={info.data.dailyWorkPlans[new Date().getHours()].thrustPressure} />
+                                                        value={info.data.dailyWorkPlans[new Date().getHours() - 1]?.thrustPressure} />
                                                 </div>
                                             </td>
                                             <td>
                                                 BAR
                                             </td>
                                         </tr>
-                                        <tr id="wraper-auto-pressure">
+                                        <tr id="wraper-auto-pressure" className={info.data.lastCommand.workPlan !== 2 ? "d-none" : ""}>
                                             <td><label className="label-title">فشار رانش</label></td>
                                             <td>
                                                 <div className="input-group input-group-sm w-100">
                                                     <div className="input-group-text" data-operation="-">-</div>
-                                                    <input id="auto-pressure" type="number" className="form-control" data-value="" onFocus={blureOnFocus} />
+                                                    <input id="auto-pressure" type="number"
+                                                        className="form-control" data-value="" onFocus={blureOnFocus}
+                                                        value={info.data.lastCommand.thrustPressure} />
                                                     <div className="input-group-text" data-operation="+">+</div>
                                                     <label></label>
                                                 </div>
@@ -308,13 +394,14 @@ const package2 = () => {
                                                 BAR
                                             </td>
                                         </tr>
-                                        <tr id="wraper-frequency">
+                                        <tr id="wraper-frequency" className={info.data.lastCommand.workPlan !== 3 ? "d-none" : ""} >
                                             <td><label className="label-title">فرکانس</label></td>
                                             <td>
                                                 <div className="form-group">
                                                     <div className="input-group input-group-sm">
                                                         <div className="input-group-text" data-operation="-">-</div>
-                                                        <input id="frequency" type="number" className="form-control" data-value="" onFocus={blureOnFocus} />
+                                                        <input id="frequency" type="number" className="form-control" data-value=""
+                                                            onFocus={blureOnFocus} value={info.data.lastCommand.frequency} />
                                                         <div className="input-group-text" data-operation="+">+</div>
                                                         <label></label>
                                                     </div>
@@ -330,30 +417,30 @@ const package2 = () => {
                         </div>
                         <div className="col-sm-12 col-lg-8 text-center" id="image-package-parent">
                             <img src={package2Image} className="img-fluid" draggable="false" id="image-package" />
-                            <img src={imageMakesh} id="image-makesh" />
-                            <img src={imageMakeshError} id="image-makesh-error" style={{ display: "none" }} />
-                            <img src={imageRanesh} id="image-ranesh" />
+                            <img src={imageMakesh} id="image-makesh" className={info.data.lastPackageData.suctionWaterAvailable ? "" : "d-none"} />
+                            <img src={imageMakeshError} id="image-makesh-error" className={info.data.lastPackageData.suctionWaterAvailable ? "d-none" : ""} />
+                            <img src={imageRanesh} id="image-ranesh" className={getThrustWaterClass()} />
 
-                            <img src={imageMakeshArrow} id="image-makesh-arrow1" />
-                            <img src={imageMakeshArrow} id="image-makesh-arrow2" />
+                            <img src={imageMakeshArrow} id="image-makesh-arrow1" className={getMakeshArrowClass()} />
+                            <img src={imageMakeshArrow} id="image-makesh-arrow2" className={getMakeshArrowClass()} />
 
-                            <img src={imageRaneshArrow} id="image-ranesh-arrow1" />
-                            <img src={imageRaneshArrow} id="image-ranesh-arrow2" />
+                            <img src={imageRaneshArrow} id="image-ranesh-arrow1" className={getThrustArrowClass()} />
+                            <img src={imageRaneshArrow} id="image-ranesh-arrow2" className={getThrustArrowClass()} />
 
-                            <img src={imageWaterPump} id="image-water-pump1" />
-                            <img src={imageWaterPump} id="image-water-pump2" />
+                            <img src={imageWaterPump} id="image-water-pump1" className={getWaterPumpClass(1)} />
+                            <img src={imageWaterPump} id="image-water-pump2" className={getWaterPumpClass(2)} />
 
-                            <img src={imagePumpActive} id="image-pump-active1" />
-                            <img src={imagePumpActive} id="image-pump-active2" />
+                            <img src={getSrcPumpStatus(1)} id="image-pump-status1" />
+                            <img src={getSrcPumpStatus(2)} id="image-pump-status2" />
 
-                            <img src={imagePumpError} id="image-pump-error1" style={{ display: "none" }} />
-                            <img src={imagePumpError} id="image-pump-error2" style={{ display: "none" }} />
+                            {/*<img src={imagePumpError} id="image-pump-error1" className={getPumpErrorClass(1)} />*/}
+                            {/*<img src={imagePumpError} id="image-pump-error2" className={getPumpErrorClass(2)} />*/}
 
-                            <img src={imagePumpReady} id="image-pump-ready1" style={{ display: "none" }} />
-                            <img src={imagePumpReady} id="image-pump-ready2" style={{ display: "none" }} />
+                            {/*<img src={imagePumpReady} id="image-pump-ready1" className={getPumpReadyClass(1)} />*/}
+                            {/*<img src={imagePumpReady} id="image-pump-ready2" className={getPumpReadyClass(2)} />*/}
 
-                            <label id="run-time-pump1"> کارکرد پمپ 1 : </label>
-                            <label id="run-time-pump2"> کارکرد پمپ 2 : </label>
+                            <label id="run-time-pump1"> کارکرد پمپ 1 : ----</label>
+                            <label id="run-time-pump2"> کارکرد پمپ 2 : ----</label>
 
                             <label id="label-input-pressure"> {info.data.lastPackageData.suctionPressure} Bar </label>
                             <label id="label-output-pressure"> {info.data.lastPackageData.thrustPressure} Bar </label>
@@ -396,7 +483,7 @@ const package2 = () => {
                                         </tr>
                                         <tr>
                                             <td><label className="label-title">زمان کل کارکرد </label></td>
-                                            <td><label id="TotalWorkingTime-pump1" className="label-value">0.3</label> H </td>
+                                            <td><label id="TotalWorkingTime-pump1" className="label-value">-----</label> H </td>
                                         </tr>
                                         <tr>
                                             <td><label className="label-title">خطای درایو </label></td>
@@ -445,7 +532,7 @@ const package2 = () => {
                                         </tr>
                                         <tr>
                                             <td><label className="label-title">زمان کل کارکرد </label></td>
-                                            <td><label id="TotalWorkingTime-pump2" className="label-value">0.3</label> H </td>
+                                            <td><label id="TotalWorkingTime-pump2" className="label-value">-----</label> H </td>
                                         </tr>
                                         <tr>
                                             <td><label className="label-title">خطای درایو </label></td>

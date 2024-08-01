@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using SpmsV2.Server.Models;
+using Microsoft.Data.SqlClient;
 
 
 namespace SpmsV2.Server.Controllers
@@ -69,35 +70,40 @@ namespace SpmsV2.Server.Controllers
             try
             {
                 PackageStatusResult data = new PackageStatusResult();
-                LastPackageData lastPackageData = new LastPackageData();
-                LastPackageCommand lastPackageCommand = new LastPackageCommand();
-                List<Drive> drives = new List<Drive>();
-                List<Pump> pumps = new List<Pump>();
-                List<DailyWorkPlan> workPlans = new List<DailyWorkPlan>();
-                Package package = new Package();
+                data.LastPackageData = new LastPackageData();
+                data.LastCommand = new LastPackageCommand();
+                data.Drives = new List<Drive>();
+                data.Pumps = new List<Pump>();
+                data.DailyWorkPlans = new List<DailyWorkPlan>();
+                data.Package = new Package();
                 using (SpmsTest1Context db = new SpmsTest1Context())
                 {
-                    drives = db.Drive.ToList();
-                    pumps = db.Pump.ToList();
-                    lastPackageData = db.LastPackageData.First();
-                    package = db.Package.First();
-                    workPlans = db.DailyWorkPlan.ToList();
-                    lastPackageCommand = db.LastPackageCommand.First();
+                    data.Drives = db.Drive.ToList();
+                    data.Pumps = db.Pump.ToList();
+                    data.LastPackageData = db.LastPackageData.First();
+                    data.Package = db.Package.First();
+                    data.DailyWorkPlans = db.DailyWorkPlan.ToList();
+                    data.LastCommand = db.LastPackageCommand.First();
                     data.Message = db.Message.First().Description;
                 }
 
-                data.DailyWorkPlans = workPlans;
-                data.Package = package;
-                data.Pumps = pumps;
-                data.Drives = drives;
-                data.LastPackageData = lastPackageData;
-                data.LastCommand = lastPackageCommand;
                 return Ok(new JsonData()
                 {
                     IsSuccess = true,
                     Message = "ok ",
                     Data = data
                 });
+                //Dapper
+                //using (var connection = new SqlConnection(connectionString))
+                //{
+                //    var sql = "SELECT ProductID, ProductName FROM Products WHERE Discontinued = 1";
+                //    var products = connection.Query<Product>(sql);
+
+                //    foreach (var product in products)
+                //    {
+                //        Console.WriteLine($"{product.ProductID} {product.ProductName}: {product.Discontinued}");
+                //    }
+                //}
             }
             catch (Exception e)
             {
