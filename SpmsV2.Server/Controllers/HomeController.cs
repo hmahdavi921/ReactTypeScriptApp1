@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using SpmsV2.Server.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace SpmsV2.Server.Controllers
@@ -169,5 +171,62 @@ namespace SpmsV2.Server.Controllers
             //    return Json(new JsonData() { IsSuccess = false, Message = e.Message, Data = null }, JsonRequestBehavior.AllowGet);
             //}
         }
+
+
+        [Route("/home/SaveCommand")]
+        [Authorize(Roles = "Guard,User,Beneficiary,Developer,Guest,Admin")]
+        [HttpPost]
+        public IActionResult SaveCommand(LastPackageCommand command)
+        {
+            try
+            {
+                int row = 0;
+                using (SpmsTest1Context db = new SpmsTest1Context())
+                {
+                    LastPackageCommand lastPackageCommand = db.LastPackageCommand.First();
+                    lastPackageCommand.Frequency = command.Frequency;
+                    lastPackageCommand.IsActive = command.IsActive;
+                    lastPackageCommand.FromScada = false;
+                    lastPackageCommand.IsActivePump1 = command.IsActivePump1;
+                    lastPackageCommand.IsActivePump2 = command.IsActivePump2;
+                    lastPackageCommand.IsActivePump3 = command.IsActivePump3;
+                    lastPackageCommand.IsActivePump4 = command.IsActivePump4;
+                    lastPackageCommand.IsActivePump5 = command.IsActivePump5;
+                    lastPackageCommand.IsActivePump6 = command.IsActivePump6;
+                    lastPackageCommand.IsActivePump7 = command.IsActivePump7;
+                    lastPackageCommand.IsActivePump8 = command.IsActivePump8;
+                    lastPackageCommand.IsActivePump9 = command.IsActivePump9;
+                    lastPackageCommand.IsActivePump10 = command.IsActivePump10;
+                    db.Entry(lastPackageCommand).State = EntityState.Modified;
+                    row = db.SaveChanges();
+                }
+
+                if (row == 1)
+                {
+                    return Ok(new JsonData()
+                    {
+                        IsSuccess = true,
+                        Message = "ok",
+                        Data = null
+                    });
+                }
+                return BadRequest(new JsonData()
+                {
+                    IsSuccess = false,
+                    Message = "Error",
+                    Data = null
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new JsonData()
+                {
+                    IsSuccess = false,
+                    Message = "Error",
+                    Data = null
+                });
+            }
+        }
+
     }
 }

@@ -75,11 +75,15 @@ export default defineConfig({
                 target,
                 secure: false
             },
-            '^/home/Package': {
+            '^/home/SaveCommand': {
                 target,
                 secure: false
             },
             '^/home/User': {
+                target,
+                secure: false
+            },
+            '^/home/Package': {
                 target,
                 secure: false
             }

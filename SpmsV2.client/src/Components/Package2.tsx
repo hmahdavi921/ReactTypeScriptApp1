@@ -18,11 +18,10 @@ import '../assets/css/package2.css';
 
 
 
+
 const package2 = () => {
-    //let isRunningOnePumpFlag = false;
-    //let displayThrustWater = false;
-    //const [makeshArrowClass, setMakeshArrowClass] = useState();
-    const [fetchDataStatus, setfetchDataStatus] = useState("");
+
+    const [fetchDataStatus, setfetchDataStatus] = useState("loading");
     const [info, setInfo] = useState({
         isSuccess: false,
         message: "",
@@ -137,6 +136,14 @@ const package2 = () => {
                 thrustPressure: 0,
                 isActivePump1: false,
                 isActivePump2: false,
+                isActivePump3: false,
+                isActivePump4: false,
+                isActivePump5: false,
+                isActivePump6: false,
+                isActivePump7: false,
+                isActivePump8: false,
+                isActivePump9: false,
+                isActivePump10: false,
                 fromScada: false
             },
             message: ""
@@ -157,20 +164,80 @@ const package2 = () => {
                         setfetchDataStatus("loading-ok");
                     }
                     setInfo(response);
-                    //isRunningOnePumpFlag = isRunningOnePump();
-                    //displayThrustWater = isRunningOnePumpFlag && info.data.lastPackageData.suctionWaterAvailable;
-                    //setMakeshArrowClass();
-
                     console.log();
                 }).catch(error => {
                     setfetchDataStatus("loading-error");
                     console.error('Fetch error:', error);
                 });
-        }, 700);
+        }, 500);
         return () => clearInterval(interval);
     }, []);
 
+    function sendCommand(id,value) {
+        let id = e.target.getAttribute('id');
+        let value = e.target.value;
+        let command = {
+            isActive: document.getElementById('isActive')?.value,
+            workPlan: document.getElementById('work-plan')?.value,
+            frequency: document.getElementById('frequency')?.value,
+            thrustPressure: document.getElementById('auto-pressure')?.value,
+            isActivePump1: document.getElementById('pump-active1')?.value == 'on',
+            isActivePump2: document.getElementById('pump-active2')?.value == 'on',
+            isActivePump3: document.getElementById('pump-active3')?.value == 'on',
+            isActivePump4: document.getElementById('pump-active4')?.value == 'on',
+            isActivePump5: document.getElementById('pump-active5')?.value == 'on',
+            isActivePump6: document.getElementById('pump-active6')?.value == 'on',
+            isActivePump7: document.getElementById('pump-active7')?.value == 'on',
+            isActivePump8: document.getElementById('pump-active8')?.value == 'on',
+            isActivePump9: document.getElementById('pump-active9')?.value == 'on',
+            isActivePump10: document.getElementById('pump-active10')?.value == 'on'
+        }
+        if (id == "isActive") {
+            command.isActive = !command.isActive;
+        } else if (id == "work-plan") {
+            command.workPlan = value;
+        } else if (id == "pump-active1") {
+            command.isActivePump1 = !command.isActivePump1;
+        } else if (id == "pump-active2") {
+            command.isActivePump2 = !command.isActivePump2;
+        } else if (id == "pump-active3") {
+            command.isActivePump3 = !command.isActivePump3;
+        } else if (id == "pump-active4") {
+            command.isActivePump4 = !command.isActivePump4;
+        } else if (id == "pump-active5") {
+            command.isActivePump5 = !command.isActivePump5;
+        } else if (id == "pump-active6") {
+            command.isActivePump6 = !command.isActivePump6;
+        } else if (id == "pump-active7") {
+            command.isActivePump7 = !command.isActivePump7;
+        } else if (id == "pump-active8") {
+            command.isActivePump8 = !command.isActivePump8;
+        } else if (id == "pump-active9") {
+            command.isActivePump9 = !command.isActivePump9;
+        } else if (id == "pump-active10") {
+            command.isActivePump10 = !command.isActivePump10;
+        } 
 
+        console.log(command);
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Set content type to JSON
+            },
+            body: JSON.stringify(command)
+            // Convert JSON data to a string and set it as the request body
+        };
+        fetch('/home/SaveCommand', options)
+            .then(response => response.json())
+            .then((response) => {
+                setInfo(response);
+                //console.log();
+            }).catch(error => {
+                // Display Message
+                console.error('Fetch error:', error);
+            });
+
+    }
     function getThrustWaterClass(): string {
         if (isRunningOnePump() && info.data.lastPackageData.suctionWaterAvailable) {
             return "";
@@ -199,16 +266,13 @@ const package2 = () => {
         }
         return "";
     }
-    function isRunningOnePump() {
+    function isRunningOnePump(): boolean {
         return info.data.lastPackageData.frequency1 > 0 || info.data.lastPackageData.frequency2 > 0;
     }
     function blureOnFocus(e: ChangeEvent<HTMLInputElement>) {
         e.target.blur();
     }
-    function handleWorkPlanChange(event: ChangeEvent<HTMLSelectElement>): void {
-        console.log(event.target.value);
-    }
-    function getLoadingIcon() {
+    function getLoadingIcon(): string {
         if (fetchDataStatus == "loading") {
             return hourglasssvg
         }
@@ -221,6 +285,7 @@ const package2 = () => {
         if (fetchDataStatus == "loading-lost") {
             return signallostsvg
         }
+        return "";
     }
     function getSrcPumpStatus(slave: number): string {
         if (slave == 1) {
@@ -260,6 +325,30 @@ const package2 = () => {
         }
         return "";
     }
+    function handleThrustpressure( ) {
+
+        let newValue = info.data.lastCommand.thrustPressure;//for secure reasons !!!!!!!
+        let operation = event?.target?.getAttribute('data-operation');
+        if (operation == '+') {
+            newValue = info.data.lastCommand.thrustPressure + 0.1;
+        } else if (operation == '-') {
+            newValue = info.data.lastCommand.thrustPressure - 0.1;
+        }
+        console.log(newValue);
+        sendCommand("auto-pressure",newValue);
+    }
+    function handleFrequency() {
+        let newValue = info.data.lastCommand.frequency;//for secure reasons !!!!!!!
+        let operation = event?.target?.getAttribute('data-operation');
+
+        if (operation == '+') {
+            newValue = info.data.lastCommand.frequency + 1;
+        } else if (operation == '-') {
+            newValue = info.data.lastCommand.frequency - 1;
+        }
+        console.log(newValue);
+        sendCommand("frequency", newValue);
+    }
 
     return (
         <React.Fragment>
@@ -279,13 +368,14 @@ const package2 = () => {
                                                 <label className="label-title">برنامه کاری</label>
                                             </td>
                                             <td>
+                                                {/* <WorkPlanSelect selectedValue={info.data.lastCommand.workPlan} onChange={sendCommand} />*/}
                                                 <select className="form-select form-select-sm fs-7"
                                                     id="work-plan"
-                                                    defaultValue={2}
-                                                    onChange={handleWorkPlanChange}   >
-                                                    <option value="1" selected={info.data.lastCommand.workPlan == 1 ? true : false}>برنامه روزانه</option>
-                                                    <option value="2" selected={info.data.lastCommand.workPlan == 2 ? true : false}>فشار اتوماتیک</option>
-                                                    <option value="3" selected={info.data.lastCommand.workPlan == 3 ? true : false} >کنترل دستی</option>
+                                                    value={info.data.lastCommand.workPlan}
+                                                    onChange={sendCommand}>
+                                                    <option value="1" >برنامه روزانه</option>
+                                                    <option value="2" >فشار اتوماتیک</option>
+                                                    <option value="3" >کنترل دستی</option>
                                                 </select>
                                             </td>
                                             <td>
@@ -363,11 +453,11 @@ const package2 = () => {
                                             <td><label className="label-title">فشار رانش</label></td>
                                             <td>
                                                 <div className="input-group input-group-sm w-100">
-                                                    <div className="input-group-text" data-operation="-">-</div>
+                                                    <button className="input-group-text" data-operation="-" onClick={handleThrustpressure}>-</button>
                                                     <input id="auto-pressure" type="text"
                                                         className="form-control" data-value="" onFocus={blureOnFocus}
                                                         value={info.data.lastCommand.thrustPressure} />
-                                                    <div className="input-group-text" data-operation="+">+</div>
+                                                    <button className="input-group-text" data-operation="+" onClick={handleThrustpressure}>+</button>
                                                     <label></label>
                                                 </div>
                                             </td>
@@ -380,10 +470,10 @@ const package2 = () => {
                                             <td>
                                                 <div className="form-group">
                                                     <div className="input-group input-group-sm">
-                                                        <div className="input-group-text" data-operation="-">-</div>
+                                                        <button className="input-group-text" data-operation="-" onClick={handleFrequency}>-</button>
                                                         <input id="frequency" type="text" className="form-control" data-value=""
                                                             onFocus={blureOnFocus} value={info.data.lastCommand.frequency} />
-                                                        <div className="input-group-text" data-operation="+">+</div>
+                                                        <button className="input-group-text" data-operation="+" onClick={handleFrequency}>+</button>
                                                         <label></label>
                                                     </div>
                                                 </div>
@@ -437,7 +527,7 @@ const package2 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <ToggleSwitch id={"pumpactive1"} active={info.data.lastCommand.isActivePump1} />
+                                                <ToggleSwitch id={"pump-active1"} active={info.data.lastCommand.isActivePump1} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -488,7 +578,7 @@ const package2 = () => {
                                         <tr>
                                             <td><label className="label-title">وضعیت </label></td>
                                             <td>
-                                                <ToggleSwitch id={"pumpactive2"} active={info.data.lastCommand.isActivePump2} />
+                                                <ToggleSwitch id={"pump-active2"} active={info.data.lastCommand.isActivePump2} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -535,3 +625,5 @@ const package2 = () => {
 
 };
 export default package2;
+
+
