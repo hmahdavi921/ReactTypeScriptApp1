@@ -184,9 +184,10 @@ namespace SpmsV2.Server.Controllers
                 using (SpmsTest1Context db = new SpmsTest1Context())
                 {
                     LastPackageCommand lastPackageCommand = db.LastPackageCommand.First();
-                    lastPackageCommand.Frequency = command.Frequency;
                     lastPackageCommand.IsActive = command.IsActive;
-                    lastPackageCommand.FromScada = false;
+                    lastPackageCommand.Frequency = command.Frequency;
+                    lastPackageCommand.WorkPlan = command.WorkPlan;
+                    lastPackageCommand.ThrustPressure = command.ThrustPressure;
                     lastPackageCommand.IsActivePump1 = command.IsActivePump1;
                     lastPackageCommand.IsActivePump2 = command.IsActivePump2;
                     lastPackageCommand.IsActivePump3 = command.IsActivePump3;
@@ -197,6 +198,7 @@ namespace SpmsV2.Server.Controllers
                     lastPackageCommand.IsActivePump8 = command.IsActivePump8;
                     lastPackageCommand.IsActivePump9 = command.IsActivePump9;
                     lastPackageCommand.IsActivePump10 = command.IsActivePump10;
+                    lastPackageCommand.FromScada = false;
                     db.Entry(lastPackageCommand).State = EntityState.Modified;
                     row = db.SaveChanges();
                 }

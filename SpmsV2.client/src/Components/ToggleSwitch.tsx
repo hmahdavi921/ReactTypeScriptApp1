@@ -2,19 +2,19 @@
 
 
 
-const ToggleSwitch = ({ id, active }: { id: string, active: boolean }) => {
+const ToggleSwitch = ({ id, active, commandMethod }: { id: string, active: boolean, commandMethod:any }) => {
 
     const [switchState, setSwitchState] = useState(false);
     function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
         
         setSwitchState(!switchState);
         // 👇️ this is the checked value of the field
-        console.log(id + " --- " + event.target.checked);
-        //sendCommand();
+        console.log(id + " --- " + e.target.checked);
+        commandMethod(id,null,e);
     }
-    //useEffect(() => {
-        //setSwitchState();
-    //});
+    useEffect(() => {
+        setSwitchState(!active);
+    });
     return (
         <div className="form-check form-switch" >
             <input
@@ -22,8 +22,7 @@ const ToggleSwitch = ({ id, active }: { id: string, active: boolean }) => {
                 type="checkbox"
                 id={id}
                 checked={active}
-                onChange={handleOnChange}
-            />
+                onChange={handleOnChange}  />
             <label
                 className="form-check-label"
                 htmlFor={id}>
