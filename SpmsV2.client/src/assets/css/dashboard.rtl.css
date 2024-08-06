@@ -515,6 +515,9 @@ input:checked + .slider:before {
         -moz-transform: rotateX(0deg); /* Firefox */
     }
 }
+#sidebarMenu ul>li {
+    cursor: pointer;
+}
 /*****************************************************************************************************************************************/
 
 

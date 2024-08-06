@@ -1,10 +1,27 @@
 ﻿import bellsvg from '../assets/svg/bell.svg';
 import logo from '../assets/image/logo.png';
 import burgermenusvg from '../assets/svg/burger-menu.svg';
+import { useMount } from 'react-use';
+import { useState } from 'react';
 
 
-const Header = (props: { firstName: string; lastName: string; }) => {
+const Header = () => {
+    const [userData, setUserData] = useState({
+        firstName: "",
+        lastName: ""
+    });
 
+    useMount(() => {
+        fetch('/home/User')
+            .then(response => response.json())
+            .then((response) => {
+                setUserData(response);
+                //console.log(userData);
+            }).catch(error => {
+                console.error('Fetch error:', error);
+            });
+        //console.log(layoutcontext)
+    });
     return (
         <header className="navbar flex-md-nowrap p-0" data-bs-theme="light">
             <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-7 text-white" href="/">
@@ -15,7 +32,7 @@ const Header = (props: { firstName: string; lastName: string; }) => {
                 <li className="nav-item dropdown">
                     <a className="dropdown-item mt-lg-2 mt-2 mb-3 fs-7 d-none d-lg-block" href="#">
                         <span id="user-name" className="d-inline">
-                            کاربر {props.firstName + " " + props.lastName}
+                            کاربر {userData.firstName + " " + userData.lastName}
                         </span>
                     </a>
                 </li>

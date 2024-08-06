@@ -15,8 +15,18 @@ import imagePumpActive from '../assets/image/pump-active.png';
 import imagePumpError from '../assets/image/pump-error.png';
 import imagePumpReady from '../assets/image/pump-ready.png';
 import '../assets/css/package2.css';
+import { NavLink } from "react-router-dom";
+import LogoutLink from "./LogoutLink";
+import aboutsvg from '../assets/svg/about.svg';
+import calendersvg from '../assets/svg/calender.svg';
+import chartsvg from '../assets/svg/chart.svg';
+import exitsvg from '../assets/svg/exit.svg';
+import homesvg from '../assets/svg/home.svg';
+import powersvg from '../assets/svg/power.svg';
+import settingsvg from '../assets/svg/setting.svg';
+import { useMount } from "react-use";
 
-const package2 = (isActiveCommand:any) => {
+const package2 = () => {
 
     const [fetchDataStatus, setfetchDataStatus] = useState("loading");
     const [info, setInfo] = useState({
@@ -146,7 +156,22 @@ const package2 = (isActiveCommand:any) => {
             message: ""
         }
     });
+    const [userData, setUserData] = useState({
+        firstName: "",
+        lastName: ""
+    });
 
+    useMount(() => {
+        fetch('/home/User')
+            .then(response => response.json())
+            .then((response) => {
+                setUserData(response);
+                //console.log(userData);
+            }).catch(error => {
+                console.error('Fetch error:', error);
+            });
+        //console.log(layoutcontext)
+    });
     useEffect(() => {
 
         const interval = setInterval(() => {
@@ -358,283 +383,363 @@ const package2 = (isActiveCommand:any) => {
     }
 
     function handleOnChange(event: ChangeEvent<HTMLInputElement>): void {
-         
+
+    }
+
+    function handleOnClickPower(): void {
+        sendCommand("power",0,null);
     }
 
     return (
         <React.Fragment>
-            <div id="package-wrapper">
-                <div className="card mt-1 mt-lg-3">
-                    <div id="station-status-parent" className="card-header bg-success-subtle text-start">
-                        <span id="station-status">وضعیت کلی دستگاه : {info.data.message}</span>
-                        <img src={getLoadingIcon()} height="24" width="24" className="float-end" />
-                    </div>
-                    <div className="card-body row">
-                        <div className="col-sm-12 col-lg-2">
-                            <div className="card" style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "15px" }}>
-                                <table className="fs-7 table table-borderless table-sm align-middle">
-                                    <tbody>
-                                        <tr>
-                                            <td style={{ width: "32%" }} >
-                                                <label className="label-title">برنامه کاری</label>
-                                            </td>
-                                            <td>
-                                                {/* <WorkPlanSelect selectedValue={info.data.lastCommand.workPlan} onChange={sendCommand} />*/}
-                                                <select className="form-select form-select-sm fs-7"
-                                                    id="work-plan"
-                                                    defaultValue={info.data.lastCommand.workPlan}
-                                                    onChange={handleWorkPlan}>
-                                                    <option value="1" >برنامه روزانه</option>
-                                                    <option value="2" >فشار اتوماتیک</option>
-                                                    <option value="3" >کنترل دستی</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">کنترل فاز</label></td>
-                                            <td><label className={info.data.lastPackageData.phaseControl ?
-                                                "label-value bg-success-subtle w-100" :
-                                                "label-value bg-danger-subtle w-100 AnimationOpacity"}
-                                                id="phase-control">{info.data.lastPackageData.phaseControl ? "✔️" : "✖️"}</label>
-                                            </td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                        {/*<tr>*/}
-                                        {/*    <td><label className="label-title">پمپ تخلیه</label></td>*/}
-                                        {/*    <td>*/}
-                                        {/*        <label className="label-value w-100 " id="evacuation-pump">*/}
-                                        {/*            {info.data.lastPackageData ? "✔️" : "✖️"}*/}
-                                        {/*        </label>*/}
-                                        {/*    </td>*/}
-                                        {/*    <td>*/}
-                                        {/*    </td>*/}
-                                        {/*</tr>*/}
-                                        <tr>
-                                            <td><label className="label-title">آبگرفتگی</label></td>
-                                            <td><label className={info.data.lastPackageData ?
-                                                "label-value bg-success-subtle w-100" :
-                                                "label-value bg-danger-subtle w-100 AnimationOpacity"}
-                                                id="inundation">{info.data.lastPackageData.stationFlood ? "✔️" : "✖️"}</label>
-                                            </td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">توان</label></td>
-                                            <td>
-                                                <label className="label-value w-100" id="power-consumed">
-                                                    {info.data.lastPackageData.power1 + info.data.lastPackageData.power2}</label>
-                                            </td>
-                                            <td>
-                                                KW
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">دبی</label></td>
-                                            <td>
-                                                <label className="label-value w-100" id="flow">{info.data.lastPackageData.flow}</label>
-                                            </td>
-                                            <td>
-                                                L/S
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">بازده</label></td>
-                                            <td><label className="label-value w-100" id="efficiency">{info.data.package.efficiency}</label>  </td>
-                                            <td>
-                                                %
-                                            </td>
-                                        </tr>
-                                        <tr id="wraper-output-pressure" className={info.data.lastCommand.workPlan !== 1 ? "d-none" : ""}>
-                                            <td><label className="label-title">فشار رانش</label></td>
-                                            <td>
-                                                <div className="input-group input-group-sm w-100">
-                                                    <input id="output-pressure-daily" type="number" className="form-control text-center" disabled
-                                                        value={info.data.dailyWorkPlans[new Date().getHours() - 1]?.thrustPressure}
-                                                        onChange={ handleOnChange} />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                BAR
-                                            </td>
-                                        </tr>
-                                        <tr id="wraper-auto-pressure" className={info.data.lastCommand.workPlan !== 2 ? "d-none" : ""}>
-                                            <td><label className="label-title">فشار رانش</label></td>
-                                            <td>
-                                                <div className="input-group input-group-sm w-100">
-                                                    <button className="input-group-text" data-operation="-" onClick={handleThrustpressure}>-</button>
-                                                    <input id="auto-pressure" type="number"
-                                                        className="form-control" data-value="" onFocus={blureOnFocus}
-                                                        value={info.data.lastCommand.thrustPressure}
-                                                        onChange={handleOnChange} />
-                                                    <button className="input-group-text" data-operation="+" onClick={handleThrustpressure}>+</button>
-                                                    <label></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                BAR
-                                            </td>
-                                        </tr>
-                                        <tr id="wraper-frequency" className={info.data.lastCommand.workPlan !== 3 ? "d-none" : ""} >
-                                            <td><label className="label-title">فرکانس</label></td>
-                                            <td>
-                                                <div className="form-group">
-                                                    <div className="input-group input-group-sm">
-                                                        <button className="input-group-text" data-operation="-" onClick={handleFrequency}>-</button>
-                                                        <input id="frequency" type="number" className="form-control" data-value=""
-                                                            onFocus={blureOnFocus}
-                                                            value={info.data.lastCommand.frequency}
-                                                            onChange={handleOnChange }                                                        />
-                                                        <button className="input-group-text" data-operation="+" onClick={handleFrequency}>+</button>
-                                                        <label></label>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                HZ
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+            <div id="main-container" className="container-fluid">
+                <div className="row">
+                    <div className="sidebar col-md-3 col-lg-1 p-0">
+                        <div className="offcanvas-md offcanvas-end" id="sidebarMenu"
+                            aria-labelledby="sidebarMenuLabel">
+                            <div className="offcanvas-header">
+                                <span className="offcanvas-title" id="sidebarMenuLabel">سیستم کنترل هوشمند شرکت اتصال مکانیک</span>
+                                <button type="button" className="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"></button>
+                            </div>
+                            <div className="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+                                <ul className="nav flex-column">
+                                    <li className="nav-item d-lg-none">
+                                        <span className="d-flex gap-2" aria-current="page">
+                                            <span className="mx-auto p-3">
+                                                کاربر {userData.firstName + " " + userData.lastName}
+                                            </span>
+                                        </span>
+                                    </li>
+                                    <li className="nav-item" id="power-menu">
+                                        <a id="power"
+                                            className={"nav-link align-items-center gap-2 text-center " + (info.data.lastCommand.isActive ? "bg-danger" : "bg-success")}
+                                            onClick={handleOnClickPower}>
+                                            <img src={powersvg} height="30" width="30" />
+                                            <span className="d-block text-white">{info.data.lastCommand.isActive ? "خاموش" : "روشن"}</span>
+                                        </a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to='/'>
+                                            <img src={homesvg} height="35" width="35" />
+                                            <span className="d-block">مرکز کنترل</span>
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to="#">
+                                            <img src={calendersvg} height="28" width="28" />
+                                            <span className="d-block">برنامه روزانه</span>
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to="#">
+                                            <img src={settingsvg} height="30" width="30" />
+                                            <span className="d-block">تنظیمات</span>
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to="#">
+                                            <img src={chartsvg} height="30" width="30" />
+                                            <span className="d-block">گزارشات</span>
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link align-items-center gap-2 text-center" to="#">
+                                            <img src={aboutsvg} height="30" width="30" />
+                                            <span className="d-block">درباره نرم افزار</span>
+                                        </NavLink>
+                                    </li>
+                                    <li id="exit-menu" className="nav-item">
+                                        <LogoutLink className="nav-link align-items-center gap-2 text-center">
+                                            <img src={exitsvg} height="30" width="30" />
+                                            <span className="d-block">خروج</span>
+                                        </LogoutLink>
+                                    </li>
+                                </ul>
+
                             </div>
                         </div>
-                        <div className="col-sm-12 col-lg-8 text-center" id="image-package-parent">
-                            <img src={package2Image} className="img-fluid" draggable="false" id="image-package" />
-                            <img src={imageMakesh} id="image-makesh" className={info.data.lastPackageData.suctionWaterAvailable ? "" : "d-none"} />
-                            <img src={imageMakeshError} id="image-makesh-error" className={info.data.lastPackageData.suctionWaterAvailable ? "d-none" : ""} />
-                            <img src={imageRanesh} id="image-ranesh" className={getThrustWaterClass()} />
-
-                            <img src={imageMakeshArrow} id="image-makesh-arrow1" className={getMakeshArrowClass()} />
-                            <img src={imageMakeshArrow} id="image-makesh-arrow2" className={getMakeshArrowClass()} />
-
-                            <img src={imageRaneshArrow} id="image-ranesh-arrow1" className={getThrustArrowClass()} />
-                            <img src={imageRaneshArrow} id="image-ranesh-arrow2" className={getThrustArrowClass()} />
-
-                            <img src={imageWaterPump} id="image-water-pump1" className={getWaterPumpClass(1)} />
-                            <img src={imageWaterPump} id="image-water-pump2" className={getWaterPumpClass(2)} />
-
-                            <img src={getSrcPumpStatus(1)} id="image-pump-status1" />
-                            <img src={getSrcPumpStatus(2)} id="image-pump-status2" />
-
-                            <label id="run-time-pump1"> کارکرد پمپ 1 : {(info.data.lastPackageData.workingTime1 / 60).toFixed(1)}</label>
-                            <label id="run-time-pump2"> کارکرد پمپ 2 : {(info.data.lastPackageData.workingTime2 / 60).toFixed(1)}</label>
-
-                            <label id="label-input-pressure"> {info.data.lastPackageData.suctionPressure} Bar </label>
-                            <label id="label-output-pressure"> {info.data.lastPackageData.thrustPressure} Bar </label>
-                        </div>
                     </div>
+
+                    <main id="main" className="col-md-9 ms-sm-auto col-lg-11 px-md-4">
+
+                        <div id="package-wrapper">
+                            <div className="card mt-1 mt-lg-3">
+                                <div id="station-status-parent" className="card-header bg-success-subtle text-start">
+                                    <span id="station-status">وضعیت کلی دستگاه : {info.data.message}</span>
+                                    <img src={getLoadingIcon()} height="24" width="24" className="float-end" />
+                                </div>
+                                <div className="card-body row">
+                                    <div className="col-sm-12 col-lg-2">
+                                        <div className="card" style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "15px" }}>
+                                            <table className="fs-7 table table-borderless table-sm align-middle">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style={{ width: "32%" }} >
+                                                            <label className="label-title">برنامه کاری</label>
+                                                        </td>
+                                                        <td>
+                                                            {/* <WorkPlanSelect selectedValue={info.data.lastCommand.workPlan} onChange={sendCommand} />*/}
+                                                            <select className="form-select form-select-sm fs-7"
+                                                                id="work-plan"
+                                                                defaultValue={info.data.lastCommand.workPlan}
+                                                                onChange={handleWorkPlan}>
+                                                                <option value="1" >برنامه روزانه</option>
+                                                                <option value="2" >فشار اتوماتیک</option>
+                                                                <option value="3" >کنترل دستی</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">کنترل فاز</label></td>
+                                                        <td><label className={info.data.lastPackageData.phaseControl ?
+                                                            "label-value bg-success-subtle w-100" :
+                                                            "label-value bg-danger-subtle w-100 AnimationOpacity"}
+                                                            id="phase-control">{info.data.lastPackageData.phaseControl ? "✔️" : "✖️"}</label>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                    </tr>
+                                                    {/*<tr>*/}
+                                                    {/*    <td><label className="label-title">پمپ تخلیه</label></td>*/}
+                                                    {/*    <td>*/}
+                                                    {/*        <label className="label-value w-100 " id="evacuation-pump">*/}
+                                                    {/*            {info.data.lastPackageData ? "✔️" : "✖️"}*/}
+                                                    {/*        </label>*/}
+                                                    {/*    </td>*/}
+                                                    {/*    <td>*/}
+                                                    {/*    </td>*/}
+                                                    {/*</tr>*/}
+                                                    <tr>
+                                                        <td><label className="label-title">آبگرفتگی</label></td>
+                                                        <td><label className={info.data.lastPackageData ?
+                                                            "label-value bg-success-subtle w-100" :
+                                                            "label-value bg-danger-subtle w-100 AnimationOpacity"}
+                                                            id="inundation">{info.data.lastPackageData.stationFlood ? "✔️" : "✖️"}</label>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">توان</label></td>
+                                                        <td>
+                                                            <label className="label-value w-100" id="power-consumed">
+                                                                {info.data.lastPackageData.power1 + info.data.lastPackageData.power2}</label>
+                                                        </td>
+                                                        <td>
+                                                            KW
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">دبی</label></td>
+                                                        <td>
+                                                            <label className="label-value w-100" id="flow">{info.data.lastPackageData.flow}</label>
+                                                        </td>
+                                                        <td>
+                                                            L/S
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">بازده</label></td>
+                                                        <td><label className="label-value w-100" id="efficiency">{info.data.package.efficiency}</label>  </td>
+                                                        <td>
+                                                            %
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="wraper-output-pressure" className={info.data.lastCommand.workPlan !== 1 ? "d-none" : ""}>
+                                                        <td><label className="label-title">فشار رانش</label></td>
+                                                        <td>
+                                                            <div className="input-group input-group-sm w-100">
+                                                                <input id="output-pressure-daily" type="number" className="form-control text-center" disabled
+                                                                    value={info.data.dailyWorkPlans[new Date().getHours() - 1]?.thrustPressure}
+                                                                    onChange={handleOnChange} />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            BAR
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="wraper-auto-pressure" className={info.data.lastCommand.workPlan !== 2 ? "d-none" : ""}>
+                                                        <td><label className="label-title">فشار رانش</label></td>
+                                                        <td>
+                                                            <div className="input-group input-group-sm w-100">
+                                                                <button className="input-group-text" data-operation="-" onClick={handleThrustpressure}>-</button>
+                                                                <input id="auto-pressure" type="number"
+                                                                    className="form-control" data-value="" onFocus={blureOnFocus}
+                                                                    value={info.data.lastCommand.thrustPressure}
+                                                                    onChange={handleOnChange} />
+                                                                <button className="input-group-text" data-operation="+" onClick={handleThrustpressure}>+</button>
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            BAR
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="wraper-frequency" className={info.data.lastCommand.workPlan !== 3 ? "d-none" : ""} >
+                                                        <td><label className="label-title">فرکانس</label></td>
+                                                        <td>
+                                                            <div className="form-group">
+                                                                <div className="input-group input-group-sm">
+                                                                    <button className="input-group-text" data-operation="-" onClick={handleFrequency}>-</button>
+                                                                    <input id="frequency" type="number" className="form-control" data-value=""
+                                                                        onFocus={blureOnFocus}
+                                                                        value={info.data.lastCommand.frequency}
+                                                                        onChange={handleOnChange} />
+                                                                    <button className="input-group-text" data-operation="+" onClick={handleFrequency}>+</button>
+                                                                    <label></label>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            HZ
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-12 col-lg-8 text-center" id="image-package-parent">
+                                        <img src={package2Image} className="img-fluid" draggable="false" id="image-package" />
+                                        <img src={imageMakesh} id="image-makesh" className={info.data.lastPackageData.suctionWaterAvailable ? "" : "d-none"} />
+                                        <img src={imageMakeshError} id="image-makesh-error" className={info.data.lastPackageData.suctionWaterAvailable ? "d-none" : ""} />
+                                        <img src={imageRanesh} id="image-ranesh" className={getThrustWaterClass()} />
+
+                                        <img src={imageMakeshArrow} id="image-makesh-arrow1" className={getMakeshArrowClass()} />
+                                        <img src={imageMakeshArrow} id="image-makesh-arrow2" className={getMakeshArrowClass()} />
+
+                                        <img src={imageRaneshArrow} id="image-ranesh-arrow1" className={getThrustArrowClass()} />
+                                        <img src={imageRaneshArrow} id="image-ranesh-arrow2" className={getThrustArrowClass()} />
+
+                                        <img src={imageWaterPump} id="image-water-pump1" className={getWaterPumpClass(1)} />
+                                        <img src={imageWaterPump} id="image-water-pump2" className={getWaterPumpClass(2)} />
+
+                                        <img src={getSrcPumpStatus(1)} id="image-pump-status1" />
+                                        <img src={getSrcPumpStatus(2)} id="image-pump-status2" />
+
+                                        <label id="run-time-pump1"> کارکرد پمپ 1 : {(info.data.lastPackageData.workingTime1 / 60).toFixed(1)}</label>
+                                        <label id="run-time-pump2"> کارکرد پمپ 2 : {(info.data.lastPackageData.workingTime2 / 60).toFixed(1)}</label>
+
+                                        <label id="label-input-pressure"> {info.data.lastPackageData.suctionPressure} Bar </label>
+                                        <label id="label-output-pressure"> {info.data.lastPackageData.thrustPressure} Bar </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pump-data-wrapper" className="mt-5">
+                            <div className="row flex-row-reverse justify-content-center">
+                                <div className="col-sm-12 col-lg-3">
+                                    <div className="card mb-3 border-success">
+                                        <div className="card-header text-center">
+                                            پمپ شماره <span className="badge bg-success">1</span>
+                                        </div>
+                                        <div className="card-body">
+                                            <table className="table table-sm table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><label className="label-title">وضعیت </label></td>
+                                                        <td>
+                                                            <ToggleSwitch id={"pump-active1"} active={info.data.lastCommand.isActivePump1} commandMethod={sendCommand} />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">فرکانس </label></td>
+                                                        <td><label id="frequency-pump1" className="label-value">{info.data.lastPackageData.frequency1}</label> HZ </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">توان </label></td>
+                                                        <td><label id="power-consumed-pump1" className="label-value">{info.data.lastPackageData.power1}</label> KW </td>
+                                                    </tr>
+                                                    {/*<tr>*/}
+                                                    {/*    <td><label className="label-title">دبی </label></td>*/}
+                                                    {/*    <td><label id="db-pump1" className="label-value">{info.data.lastPackageData.}</label> L/S </td>*/}
+                                                    {/*</tr>*/}
+                                                    <tr>
+                                                        <td><label className="label-title">جریان </label></td>
+                                                        <td><label id="current-pump1" className="label-value">{info.data.lastPackageData.current1}</label> A </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">زمان کل کارکرد </label></td>
+                                                        <td><label id="TotalWorkingTime-pump1" className="label-value">
+                                                            {(info.data.lastPackageData.totalWorkingTime1 / 60).toFixed(1)}
+                                                        </label> H </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">خطای درایو </label></td>
+                                                        <td>
+                                                            <label id="Fault-pump1"
+                                                                className={"label-value bg-danger-subtle " +
+                                                                    (info.data.lastPackageData.fault1 != "0" ? "AnimationOpacity" : "")}>
+                                                                {info.data.lastPackageData.fault1}
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-12 col-lg-3">
+                                    <div className="card mb-3 border-success">
+                                        <div className="card-header text-center">
+                                            پمپ شماره <span className="badge bg-success">2</span>
+                                        </div>
+                                        <div className="card-body">
+                                            <table className="table table-sm table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><label className="label-title">وضعیت </label></td>
+                                                        <td>
+                                                            <ToggleSwitch id={"pump-active2"} active={info.data.lastCommand.isActivePump2} commandMethod={sendCommand} />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">فرکانس </label></td>
+                                                        <td><label id="frequency-pump2" className="label-value">{info.data.lastPackageData.frequency2}</label> HZ </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">توان </label></td>
+                                                        <td><label id="power-consumed-pump2" className="label-value">{info.data.lastPackageData.power2}</label> KW </td>
+                                                    </tr>
+                                                    {/*<tr>*/}
+                                                    {/*    <td><label className="label-title">دبی </label></td>*/}
+                                                    {/*    <td><label id="db-pump2" className="label-value">0</label> L/S </td>*/}
+                                                    {/*</tr>*/}
+                                                    <tr>
+                                                        <td><label className="label-title">جریان </label></td>
+                                                        <td><label id="current-pump2" className="label-value">{info.data.lastPackageData.current2}</label> A </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">زمان کل کارکرد </label></td>
+                                                        <td><label id="TotalWorkingTime-pump2" className="label-value">
+                                                            {(info.data.lastPackageData.totalWorkingTime2 / 60).toFixed(1)}
+                                                        </label> H </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label className="label-title">خطای درایو </label></td>
+                                                        <td>
+                                                            <label id="Fault-pump2"
+                                                                className={"label-value bg-danger-subtle " +
+                                                                    (info.data.lastPackageData.fault2 != "0" ? "AnimationOpacity" : "")}>
+                                                                {info.data.lastPackageData.fault2}
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </main>
                 </div>
             </div>
 
-            <div id="pump-data-wrapper" className="mt-5">
-                <div className="row flex-row-reverse justify-content-center">
-                    <div className="col-sm-12 col-lg-3">
-                        <div className="card mb-3 border-success">
-                            <div className="card-header text-center">
-                                پمپ شماره <span className="badge bg-success">1</span>
-                            </div>
-                            <div className="card-body">
-                                <table className="table table-sm table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <td><label className="label-title">وضعیت </label></td>
-                                            <td>
-                                                <ToggleSwitch id={"pump-active1"} active={info.data.lastCommand.isActivePump1} commandMethod={sendCommand} />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">فرکانس </label></td>
-                                            <td><label id="frequency-pump1" className="label-value">{info.data.lastPackageData.frequency1}</label> HZ </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">توان </label></td>
-                                            <td><label id="power-consumed-pump1" className="label-value">{info.data.lastPackageData.power1}</label> KW </td>
-                                        </tr>
-                                        {/*<tr>*/}
-                                        {/*    <td><label className="label-title">دبی </label></td>*/}
-                                        {/*    <td><label id="db-pump1" className="label-value">{info.data.lastPackageData.}</label> L/S </td>*/}
-                                        {/*</tr>*/}
-                                        <tr>
-                                            <td><label className="label-title">جریان </label></td>
-                                            <td><label id="current-pump1" className="label-value">{info.data.lastPackageData.current1}</label> A </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">زمان کل کارکرد </label></td>
-                                            <td><label id="TotalWorkingTime-pump1" className="label-value">
-                                                {(info.data.lastPackageData.totalWorkingTime1 / 60).toFixed(1)}
-                                            </label> H </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">خطای درایو </label></td>
-                                            <td>
-                                                <label id="Fault-pump1"
-                                                    className={"label-value bg-danger-subtle " +
-                                                        (info.data.lastPackageData.fault1 != "0" ? "AnimationOpacity" : "")}>
-                                                    {info.data.lastPackageData.fault1}
-                                                </label>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-12 col-lg-3">
-                        <div className="card mb-3 border-success">
-                            <div className="card-header text-center">
-                                پمپ شماره <span className="badge bg-success">2</span>
-                            </div>
-                            <div className="card-body">
-                                <table className="table table-sm table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <td><label className="label-title">وضعیت </label></td>
-                                            <td>
-                                                <ToggleSwitch id={"pump-active2"} active={info.data.lastCommand.isActivePump2} commandMethod={sendCommand} />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">فرکانس </label></td>
-                                            <td><label id="frequency-pump2" className="label-value">{info.data.lastPackageData.frequency2}</label> HZ </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">توان </label></td>
-                                            <td><label id="power-consumed-pump2" className="label-value">{info.data.lastPackageData.power2}</label> KW </td>
-                                        </tr>
-                                        {/*<tr>*/}
-                                        {/*    <td><label className="label-title">دبی </label></td>*/}
-                                        {/*    <td><label id="db-pump2" className="label-value">0</label> L/S </td>*/}
-                                        {/*</tr>*/}
-                                        <tr>
-                                            <td><label className="label-title">جریان </label></td>
-                                            <td><label id="current-pump2" className="label-value">{info.data.lastPackageData.current2}</label> A </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">زمان کل کارکرد </label></td>
-                                            <td><label id="TotalWorkingTime-pump2" className="label-value">
-                                                {(info.data.lastPackageData.totalWorkingTime2 / 60).toFixed(1)}
-                                            </label> H </td>
-                                        </tr>
-                                        <tr>
-                                            <td><label className="label-title">خطای درایو </label></td>
-                                            <td>
-                                                <label id="Fault-pump2"
-                                                    className={"label-value bg-danger-subtle " +
-                                                        (info.data.lastPackageData.fault2 != "0" ? "AnimationOpacity" : "")}>
-                                                    {info.data.lastPackageData.fault2}
-                                                </label>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </React.Fragment>
     )
 
