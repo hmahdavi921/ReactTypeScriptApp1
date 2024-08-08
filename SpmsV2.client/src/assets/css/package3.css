@@ -1,2 +1,339 @@
-body {
+#image-makesh, #image-makesh-error {
+    position: absolute;
+    width: 11%;
+    top: 24.5%;
+    right: 69.7%;
+    opacity: 0.7;
+}
+
+#image-ranesh {
+    position: absolute;
+    right: 19.6%;
+    top: 193px;
+    opacity: 0.7;
+    width: 110px;
+}
+
+#image-makesh-arrow1 {
+    position: absolute;
+    top: 35%;
+    right: 72%;
+    width: 68px;
+}
+
+#image-makesh-arrow2 {
+    position: absolute;
+    top: 56.5%;
+    right: 73.5%;
+    width: 68px;
+}
+
+#image-ranesh-arrow1 {
+    position: absolute;
+    top: 42%;
+    right: 22%;
+    width: 65px;
+}
+
+#image-ranesh-arrow2 {
+    position: absolute;
+    top: 60%;
+    right: 21%;
+    width: 65px;
+}
+
+#image-water-pump1 {
+    position: absolute;
+    top: 49.5%;
+    right: 34.6%;
+    width: 173px;
+    height: 43px;
+}
+
+#image-water-pump2 {
+    position: absolute;
+    top: 70.5%;
+    right: 34.3%;
+    width: 173px;
+    height: 43px;
+}
+
+#image-pump-active1, #image-pump-error1, #image-pump-ready1, #image-pump-status1 {
+    position: absolute;
+    top: 47.5%;
+    right: 33%;
+    width: 34%;
+    opacity: 0.7;
+    height: 11.5%;
+}
+
+#image-pump-active2, #image-pump-error2, #image-pump-ready2, #image-pump-status2 {
+    position: absolute;
+    top: 68.5%;
+    right: 32.4%;
+    width: 35.4%;
+    opacity: 0.7;
+    height: 11.7%;
+}
+
+#run-time-pump1 {
+    position: absolute;
+    top: 51.5%;
+    right: 47%;
+    color: #fff;
+}
+
+#run-time-pump2 {
+    position: absolute;
+    top: 72.5%;
+    right: 47%;
+    color: #fff;
+}
+
+#label-input-pressure {
+    position: absolute;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 4px;
+    border: 1px solid rgb(47, 155, 156);
+    color: rgb(47, 155, 156);
+    top: 29%;
+    right: 62%;
+    font-size: 18px;
+    direction: ltr;
+    width: 111px;
+}
+
+#label-output-pressure {
+    position: absolute;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 4px;
+    border: 1px solid rgb(47, 155, 156);
+    color: rgb(47, 155, 156);
+    top: 86%;
+    right: 26%;
+    font-size: 18px;
+    direction: ltr;
+    width: 111px;
+}
+/**********************************************************************************************************
+    *
+    *
+    @media (max-width: 1440px)
+    *
+    *
+***********************************************************************************************************/
+@media (max-width: 1440px) {
+    #image-makesh, #image-makesh-error {
+        width: 11%;
+        top: 26%;
+        right: 77.7%;
+    }
+
+    #image-makesh-arrow1 {
+        top: 35%;
+        right: 80%;
+        width: 55px;
+    }
+
+    #image-makesh-arrow2 {
+        top: 56.5%;
+        right: 81%;
+        width: 55px;
+    }
+
+    #label-input-pressure {
+        right: 68%;
+    }
+
+    #label-output-pressure {
+        top: 84%;
+        right: 34%;
+    }
+
+    #image-ranesh {
+        right: 28.6%;
+        top: 37%;
+        width: 73px;
+        height: 237px;
+    }
+
+    #image-ranesh-arrow1 {
+        top: 42%;
+        right: 30.5%;
+        width: 53px;
+    }
+
+    #image-ranesh-arrow2 {
+        top: 61%;
+        right: 29.5%;
+        width: 53px;
+    }
+
+    #image-pump-active1, #image-pump-error1, #image-pump-ready1, #image-pump-status1 {
+        top: 48.5%;
+        right: 41.3%;
+    }
+
+    #image-pump-active2, #image-pump-error2, #image-pump-ready2, #image-pump-status2 {
+        top: 69%;
+        right: 40.8%;
+        width: 35%;
+        height: 11%;
+    }
+
+    #run-time-pump1 {
+        top: 52%;
+        right: 55.3%;
+    }
+
+
+    #run-time-pump2 {
+        top: 72.5%;
+        right: 55.1%;
+    }
+
+    #image-water-pump1 {
+        top: 49.5%;
+        right: 42.6%;
+        width: 135px;
+    }
+
+    #image-water-pump2 {
+        top: 69.5%;
+        right: 42.2%;
+        width: 135px;
+    }
+
+    #pump-data-wrapper .col-lg-3 div.card-body label.form-check-label {
+        right: 165px;
+    }
+
+    #pump-data-wrapper .col-lg-3 div.card-body .form-check-input:checked + label.form-check-label {
+        right: 148px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**********************************************************************************************************
+    *
+    *
+    @media (max-width: 768px)
+    *
+    *
+***********************************************************************************************************/
+@media (max-width: 768px) {
+    #image-makesh, #image-makesh-error {
+        width: 73px;
+        top: 70%;
+        right: 78%;
+    }
+
+    #image-ranesh {
+        right: 6.4%;
+        top: 74%;
+        width: 43px;
+        height: 125px;
+    }
+
+    #image-makesh-arrow1 {
+        top: 74%;
+        right: 81%;
+        width: 27px;
+    }
+
+    #image-makesh-arrow2 {
+        top: 82%;
+        right: 82.5%;
+        width: 27px;
+    }
+
+    #image-ranesh-arrow1 {
+        top: 75%;
+        right: 9.5%;
+        width: 30px;
+    }
+
+    #image-ranesh-arrow2 {
+        top: 82%;
+        right: 8%;
+        width: 30px;
+    }
+
+    #image-water-pump1 {
+        top: 79%;
+        right: 27.5%;
+        width: 68px;
+        height: 20px;
+    }
+
+    #image-water-pump2 {
+        top: 87%;
+        right: 27%;
+        width: 71px;
+        height: 20px;
+    }
+
+    #image-pump-active1, #image-pump-error1, #image-pump-ready1, #image-pump-status1 {
+        top: 79%;
+        right: 26%;
+        width: 220px;
+        height: 23px;
+    }
+
+    #image-pump-active2, #image-pump-error2, #image-pump-ready2, #image-pump-status2 {
+        top: 87%;
+        right: 24.9%;
+        width: 230px;
+        height: 23px;
+    }
+
+    #run-time-pump1 {
+        top: 79.6%;
+        right: 46%;
+        font-size: 10px;
+    }
+
+    #run-time-pump2 {
+        top: 87.6%;
+        right: 46%;
+        font-size: 10px;
+    }
+
+    #label-input-pressure {
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 2px;
+        top: 69%;
+        right: 58%;
+        font-size: 15px;
+        width: 83px;
+    }
+
+    #label-output-pressure {
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 2px;
+        top: 92%;
+        right: 15%;
+        font-size: 15px;
+        width: 83px;
+    }
+
+    #station-status-parent {
+        height: 77px;
+    }
 }

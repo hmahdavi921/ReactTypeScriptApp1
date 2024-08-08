@@ -6,6 +6,7 @@
 body {
     font-family: iransans;
     font-size: 0.75rem;
+    background-color: #eee;
 }
 .unselectable {
     -moz-user-select: -moz-none;
@@ -268,7 +269,7 @@ header {
 
 #power-menu > a {
     border-top-left-radius: 4px;
-    border: 1px solid #dc3545;
+    border: 1px solid #ddd;
 }
 
 #exit-menu > a {
@@ -515,8 +516,9 @@ input:checked + .slider:before {
         -moz-transform: rotateX(0deg); /* Firefox */
     }
 }
-#sidebarMenu ul>li {
+#sidebarMenu ul > li {
     cursor: pointer;
+    background-color: #fff;
 }
 /*****************************************************************************************************************************************/
 
@@ -557,6 +559,9 @@ input:checked + .slider:before {
     *
 *********************************************************/
 @media (max-width: 768px) {
+    #station-status {
+        line-height: 24px;
+    }
     .sidebar .offcanvas-lg {
         position: -webkit-sticky;
         position: sticky;

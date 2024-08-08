@@ -230,5 +230,35 @@ namespace SpmsV2.Server.Controllers
             }
         }
 
+        [Route("/home/PumpCount")]
+        [Authorize(Roles = "Guard,User,Beneficiary,Developer,Guest,Admin")]
+        [HttpGet]
+        public IActionResult PumpCount()
+        {
+            try
+            {
+                int pumpCount = 0;
+                using (SpmsTest1Context db = new SpmsTest1Context())
+                {
+                    pumpCount = db.Package.First().TotalPumpCount;
+                }
+                return Ok(new JsonData()
+                {
+                    IsSuccess = true,
+                    Message = "ok",
+                    Data = pumpCount
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new JsonData()
+                {
+                    IsSuccess = false,
+                    Message = "Error",
+                    Data = null
+                });
+            }
+        }
+
     }
 }

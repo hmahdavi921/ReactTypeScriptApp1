@@ -86,6 +86,10 @@ export default defineConfig({
             '^/home/Package': {
                 target,
                 secure: false
+            },
+            '^/home/PumpCount': {
+                target,
+                secure: false
             }
         },
         port: 5173,

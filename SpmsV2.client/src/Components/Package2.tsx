@@ -14,7 +14,6 @@ import imageWaterPump from '../assets/image/water-pump.png';
 import imagePumpActive from '../assets/image/pump-active.png';
 import imagePumpError from '../assets/image/pump-error.png';
 import imagePumpReady from '../assets/image/pump-ready.png';
-import '../assets/css/package2.css';
 import { NavLink } from "react-router-dom";
 import LogoutLink from "./LogoutLink";
 import aboutsvg from '../assets/svg/about.svg';
@@ -24,7 +23,9 @@ import exitsvg from '../assets/svg/exit.svg';
 import homesvg from '../assets/svg/home.svg';
 import powersvg from '../assets/svg/power.svg';
 import settingsvg from '../assets/svg/setting.svg';
+import refreshsvg from '../assets/svg/refresh.svg';
 import { useMount } from "react-use";
+import '../assets/css/package2.css';
 
 const package2 = () => {
 
@@ -387,7 +388,7 @@ const package2 = () => {
     }
 
     function handleOnClickPower(): void {
-        sendCommand("power",0,null);
+        sendCommand("isActive", 0, null);
     }
 
     return (
@@ -411,7 +412,7 @@ const package2 = () => {
                                         </span>
                                     </li>
                                     <li className="nav-item" id="power-menu">
-                                        <a id="power"
+                                        <a id="isActive"
                                             className={"nav-link align-items-center gap-2 text-center " + (info.data.lastCommand.isActive ? "bg-danger" : "bg-success")}
                                             onClick={handleOnClickPower}>
                                             <img src={powersvg} height="30" width="30" />
@@ -469,7 +470,7 @@ const package2 = () => {
                                     <img src={getLoadingIcon()} height="24" width="24" className="float-end" />
                                 </div>
                                 <div className="card-body row">
-                                    <div className="col-sm-12 col-lg-2">
+                                    <div className={"col-sm-12 " + (window.innerWidth <= 1440 ? "col-lg-3" : "col-lg-2")}>
                                         <div className="card" style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "15px" }}>
                                             <table className="fs-7 table table-borderless table-sm align-middle">
                                                 <tbody>
@@ -552,7 +553,7 @@ const package2 = () => {
                                                         <td>
                                                             <div className="input-group input-group-sm w-100">
                                                                 <input id="output-pressure-daily" type="number" className="form-control text-center" disabled
-                                                                    value={info.data.dailyWorkPlans[new Date().getHours() - 1]?.thrustPressure}
+                                                                    value={info.data.dailyWorkPlans[new Date().getHours() - 1]?.thrustPressure || 0}
                                                                     onChange={handleOnChange} />
                                                             </div>
                                                         </td>
